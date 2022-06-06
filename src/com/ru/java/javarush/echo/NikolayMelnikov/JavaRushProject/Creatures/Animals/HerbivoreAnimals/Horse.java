@@ -14,7 +14,7 @@ public class Horse extends HerbivoreAnimal {
     }
 
     {
-        name = "������";
+        name = "Р›РѕС€Р°РґСЊ";
         weight = 400;
         energy = 4;
         hanger = 60;

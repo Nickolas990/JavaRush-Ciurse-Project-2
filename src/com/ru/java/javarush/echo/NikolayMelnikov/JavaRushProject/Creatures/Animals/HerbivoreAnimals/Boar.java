@@ -16,7 +16,7 @@ public class Boar extends HerbivoreAnimal {
     }
 
     {
-        name = "�����";
+        name = "РљР°Р±Р°РЅ";
         weight = 400;
         energy = 2;
         hanger = 50;

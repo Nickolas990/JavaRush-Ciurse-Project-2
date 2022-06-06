@@ -31,7 +31,7 @@ public class Cell {
             capacityOfCellInit(creature);
             if (currentCapacityOfCell.get(creature.getName()) < 0) {
                 creature.die();
-                throw new RuntimeException(String.format("Íîâûé %s íå ñìîã ïîÿâèòüñÿ â ýòîì ìåñòå, äëÿ íåãî íåò ìåñòà. Îò áåçûñõîäíîñòè îí ñðàçó óìèðàåò.", creature.getName()));
+                System.err.println(String.format("Ð ÑœÐ Ñ•Ð Ð†Ð¡â€¹Ð â„– %s Ð Ð…Ð Âµ Ð¡ÐƒÐ Ñ˜Ð Ñ•Ð Ñ– Ð Ñ—Ð Ñ•Ð¡ÐÐ Ð†Ð Ñ‘Ð¡â€šÐ¡ÐŠÐ¡ÐƒÐ¡Ð, Ð¡â€šÐ Â°Ð Ñ” Ð Ñ”Ð Â°Ð Ñ” Ð Â¶Ð Â»Ð¡Ð Ð Ð…Ð ÂµÐ Ñ–Ð Ñ• Ð Ð…Ð ÂµÐ¡â€š Ð Ñ˜Ð ÂµÐ¡ÐƒÐ¡â€šÐ Â°. Ð Ñ›Ð¡â€š Ð Â±Ð ÂµÐ Â·Ð¡â€¹Ð¡ÐƒÐ¡â€¦Ð Ñ•Ð Ò‘Ð Ð…Ð Ñ•Ð¡ÐƒÐ¡â€šÐ Ñ‘ Ð Ñ•Ð Ð… Ð¡Ñ“Ð Ñ˜Ð Ñ‘Ð¡Ð‚Ð Â°Ð ÂµÐ¡â€š.", creature.getName()));
             }
 
     }

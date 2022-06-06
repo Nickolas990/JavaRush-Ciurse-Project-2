@@ -17,7 +17,7 @@ public class Mouse extends HerbivoreAnimal {
     }
 
     {
-        name = "����";
+        name = "РњС‹С€СЊ";
         weight = 0.05;
         energy = 1;
         hanger = 0.01;

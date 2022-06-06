@@ -15,7 +15,7 @@ public class Sheep extends HerbivoreAnimal {
     }
 
     {
-        name = "����";
+        name = "РћРІС†Р°";
         weight = 70;
         energy = 3;
         hanger = 15;

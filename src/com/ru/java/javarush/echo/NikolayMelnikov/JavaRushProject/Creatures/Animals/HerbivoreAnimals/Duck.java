@@ -15,7 +15,7 @@ public class Duck extends HerbivoreAnimal {
     }
 
     {
-        name = "����";
+        name = "РЈС‚РєР°";
         weight = 1;
         energy = 4;
         hanger = 0.15;

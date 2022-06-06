@@ -15,7 +15,7 @@ public class Rabbit extends HerbivoreAnimal {
     }
 
     {
-        name = "������";
+        name = "РљСЂРѕР»РёРє";
         weight = 2;
         energy = 2;
         hanger = 0.45;

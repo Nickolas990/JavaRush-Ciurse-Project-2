@@ -15,7 +15,7 @@ public class Deer extends HerbivoreAnimal {
     }
 
     {
-        name = "�����";
+        name = "РћР»РµРЅСЊ";
         weight = 300;
         energy = 4;
         hanger = 50;

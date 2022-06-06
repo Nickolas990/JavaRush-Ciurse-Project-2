@@ -4,6 +4,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creat
 
 public interface Eating {
     default void eat (Creature creature) {
-        System.out.println(String.format(" %s ���� %s", this, creature));
+        System.out.println(String.format(" %s СЃСЉРµРґР°РµС‚ %s", this, creature));
     }
 }

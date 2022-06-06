@@ -15,7 +15,7 @@ public class Goat extends HerbivoreAnimal {
     }
 
     {
-        name = "����";
+        name = "РљРѕР·Р°";
         weight = 60;
         energy = 3;
         hanger = 10;
