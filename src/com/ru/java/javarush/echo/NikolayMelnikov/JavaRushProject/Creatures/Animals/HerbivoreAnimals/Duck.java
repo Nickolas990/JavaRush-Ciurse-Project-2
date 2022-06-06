@@ -1,15 +1,23 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals;
 
-public class Duck extends HerbivoreAnimal {
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 
+@MaxCapacity(200)
+public class Duck extends HerbivoreAnimal {
 
     public Duck(int x, int y) {
         super(x, y);
     }
+
+    public Duck(Coordinates position) {
+        super(position);
+    }
+
     {
-        this.weight = 1;
-        this.maxCapacityInCell = 200;
-        this.energy = 4;
-        this.hanger = 0.15;
+        name = "гђър";
+        weight = 1;
+        energy = 4;
+        hanger = 0.15;
     }
 }

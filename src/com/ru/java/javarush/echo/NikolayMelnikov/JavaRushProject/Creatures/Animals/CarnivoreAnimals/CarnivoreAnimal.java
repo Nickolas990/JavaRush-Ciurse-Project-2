@@ -2,7 +2,7 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Anim
 
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Field.Coordinates;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 
 public abstract class CarnivoreAnimal extends Animal {
 

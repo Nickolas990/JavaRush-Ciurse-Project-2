@@ -1,7 +1,7 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Field.Coordinates;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 
 public class Plant extends Creature {
     int weight;

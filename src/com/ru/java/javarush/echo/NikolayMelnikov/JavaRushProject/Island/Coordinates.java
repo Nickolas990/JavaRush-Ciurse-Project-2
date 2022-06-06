@@ -1,4 +1,4 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Field;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island;
 
 import lombok.Getter;
 import lombok.Setter;

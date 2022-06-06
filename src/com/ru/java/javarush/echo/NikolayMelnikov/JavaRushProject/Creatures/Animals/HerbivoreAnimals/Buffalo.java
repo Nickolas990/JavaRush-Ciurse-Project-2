@@ -1,8 +1,9 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals;
 
-import lombok.Generated;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 
-@Generated
+@MaxCapacity(10)
 public class Buffalo extends HerbivoreAnimal {
 
 
@@ -10,11 +11,15 @@ public class Buffalo extends HerbivoreAnimal {
         super(x, y);
     }
 
+    public Buffalo(Coordinates position) {
+        super(position);
+    }
+
     {
-        this.weight = 700;
-        this.maxCapacityInCell = 10;
-        this.energy = 3;
-        this.hanger = 100;
+        name = "Áףיגמכ";
+        weight = 700;
+        energy = 3;
+        hanger = 100;
     }
 
 }
