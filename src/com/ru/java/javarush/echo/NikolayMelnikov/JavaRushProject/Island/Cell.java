@@ -31,7 +31,7 @@ public class Cell {
             capacityOfCellInit(creature);
             if (currentCapacityOfCell.get(creature.getName()) < 0) {
                 creature.die();
-                System.err.println(String.format("РќРѕРІС‹Р№ %s РЅРµ СЃРјРѕРі РїРѕСЏРІРёС‚СЊСЃСЏ, С‚Р°Рє РєР°Рє Р¶Р»СЏ РЅРµРіРѕ РЅРµС‚ РјРµСЃС‚Р°. РћС‚ Р±РµР·С‹СЃС…РѕРґРЅРѕСЃС‚Рё РѕРЅ СѓРјРёСЂР°РµС‚.", creature.getName()));
+                System.err.println(String.format("Новый %s не смог появиться в этом месте, для него нет места. От безысходности он сразу умирает.", creature.getName()));
             }
 
     }

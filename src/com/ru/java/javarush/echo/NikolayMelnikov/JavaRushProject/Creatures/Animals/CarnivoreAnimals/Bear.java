@@ -19,7 +19,7 @@ public class Bear extends CarnivoreAnimal {
     }
 
     {
-        name = "Μεδβεδό";
+        name = "ΠΠµΠ΄Π²ΠµΠ΄Ρ";
         weight = 500;
         energy = 2;
         hanger = 80;

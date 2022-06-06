@@ -16,7 +16,7 @@ public class Boa extends CarnivoreAnimal{
     }
 
     {
-        name = "”‰‡‚";
+        name = "–£–¥–∞–≤";
         weight = 15;
         energy = 1;
         hanger = 3;
