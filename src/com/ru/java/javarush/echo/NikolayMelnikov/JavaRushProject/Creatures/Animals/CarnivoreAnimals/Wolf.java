@@ -15,7 +15,7 @@ public class Wolf extends CarnivoreAnimal {
     }
 
     {
-        name = "Волк";
+        name = "Р’РѕР»Рє";
         weight = 50;
         energy = 3;
         hanger = 8;

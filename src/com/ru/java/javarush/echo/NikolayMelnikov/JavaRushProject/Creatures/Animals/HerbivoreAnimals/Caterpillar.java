@@ -16,7 +16,7 @@ public class Caterpillar extends HerbivoreAnimal {
     }
 
     {
-        name = "Р“СѓСЃРµРЅРёС†Р°";
+        name = "Гусеница";
         weight = 0.01;
         energy = 0;
         hanger = 0;

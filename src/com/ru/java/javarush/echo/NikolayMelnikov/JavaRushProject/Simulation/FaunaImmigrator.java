@@ -2,6 +2,7 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.CarnivoreAnimals.*;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals.*;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class FaunaImmigrator {
         listOfTasks.add(new AnimalDeployer(Mouse.class));
         listOfTasks.add(new AnimalDeployer(Rabbit.class));
         listOfTasks.add(new AnimalDeployer(Sheep.class));
+        listOfTasks.add(new AnimalDeployer(Plant.class));
+
 
 
         ExecutorService service = Executors.newCachedThreadPool();

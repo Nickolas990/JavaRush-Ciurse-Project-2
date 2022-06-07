@@ -14,7 +14,7 @@ public class Fox extends CarnivoreAnimal {
     }
 
     {
-        name = "ÀËÒ‡";
+        name = "–õ–∏—Å–∞";
         weight = 8;
         energy = 2;
         hanger = 2;

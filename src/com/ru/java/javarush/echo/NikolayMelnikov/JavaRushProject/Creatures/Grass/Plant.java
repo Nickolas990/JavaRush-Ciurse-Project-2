@@ -1,9 +1,10 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass;
 
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Behaivior.Mortal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 
-public class Plant extends Creature {
+public class Plant extends Creature implements Mortal {
     int weight;
     int maxCapacityInCell;
 
@@ -16,7 +17,13 @@ public class Plant extends Creature {
     }
 
     {
-        this.weight = 1;
-        this.maxCapacityInCell = 200;
+        name = "Растение";
+        weight = 1;
+        maxCapacityInCell = 200;
+    }
+
+    @Override
+    public void die() {
+        super.die();
     }
 }
