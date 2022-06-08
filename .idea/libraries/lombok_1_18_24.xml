@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="lombok-1.18.24">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/com/ru/java/javarush/echo/NikolayMelnikov/libraries/lombok-1.18.24.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/lombok-1.18.24.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

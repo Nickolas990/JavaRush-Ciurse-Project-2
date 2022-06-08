@@ -1,7 +1,9 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Behaivior.Mortal;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -32,11 +34,24 @@ public abstract class Creature implements Mortal {
         position.setY(y);
     }
 
+    public void setPosition(Coordinates coordinates) {
+        position.setX(coordinates.getX());
+        position.setY(coordinates.getY());
+    }
+
 
     @Override
     public void die() {
         Mortal.super.die();
         isAlive = false;
+        leaveCell();
+    }
+
+    public synchronized void leaveCell() {
+        Cell cell =  Island.instance.getCell(this.getPosition());
+        cell.getFauna().remove(this);
+        Integer qtyofAnimals = cell.getCurrentCapacityOfCell().get(this.getName());
+        cell.getCurrentCapacityOfCell().put(this.getName(), qtyofAnimals - 1);
     }
 
     @Override
