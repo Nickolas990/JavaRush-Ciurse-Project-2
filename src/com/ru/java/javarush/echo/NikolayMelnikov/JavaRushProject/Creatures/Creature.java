@@ -13,6 +13,10 @@ public abstract class Creature implements Mortal {
     Coordinates position;
     boolean isAlive = true;
     protected String name;
+    protected double weight;
+    protected int energy;
+    protected double hanger;
+    protected static int maxCapacityInCell;
 
     protected Creature (int x, int y) {
         position.setX(x);

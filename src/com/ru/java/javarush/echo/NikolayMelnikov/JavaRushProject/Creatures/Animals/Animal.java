@@ -9,16 +9,14 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordina
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import lombok.Getter;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 @Getter
 public abstract class Animal extends Creature implements Moving, Eating, Breeding {
-    protected double weight;
-    protected int energy;
-    protected double hanger;
-    protected static int maxCapacityInCell;
+
 
     protected List<Cell> accessibleCells = new ArrayList<>();
     {
@@ -52,5 +50,22 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         newCell.addCreatureInCell(this);
     }
 
+    @Override
+    public Animal chooseForBreed() {
+        Class clazz = this.getClass();
+        Cell cell = Island.instance.getCell(this.getPosition());
+        return (Animal) cell.getFauna().stream().filter(e -> e.getName().equals(this.getName())).findAny().orElseGet(null);
+    }
 
+    @Override
+    public void breed(Animal animal) {
+        animal.energy--;
+        this.energy--;
+        try {
+            Island.instance.addCreature(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
 }

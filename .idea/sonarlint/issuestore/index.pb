@@ -9,7 +9,5 @@ Zsrc/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Util/CoordinatesC
 Usrc/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Simulation/Animals.java,7\2\7285239e44e1557c5cb5fd8786914ed312fe77ec
 …
 Usrc/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Island/Coordinates.java,5\5\557dbfe9de822f25263a3ac07473fbd790b3c334
-€
-Psrc/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Island/Island.java,b\f\bfb8634983e25ec4630f19b2552de5dcf15a4367
 ƒ
 Ssrc/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Behaivior/Mortal.java,c\d\cd5ee6273d64c8fb1e532e578da6c3e3ae2d9d0c

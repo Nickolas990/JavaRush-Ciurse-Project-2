@@ -1,9 +1,9 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Behaivior;
 
 
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
 
 public interface Breeding {
-    default void breed() {
-        System.out.println(String.format("%s размножился", this));
-    }
+    Animal chooseForBreed();
+    void breed(Animal animal);
 }
