@@ -5,17 +5,24 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @ToString
 public abstract class Creature implements Mortal {
     Coordinates position;
     boolean isAlive = true;
     protected String name;
     protected double weight;
-    protected int energy;
-    protected double hanger;
+    protected int maxEnergy;
+    protected int currentEnergy;
+    protected double maxHunger;
+    protected double currentHanger;
+    protected int starve;
+
+
     protected static int maxCapacityInCell;
 
     protected Creature (int x, int y) {

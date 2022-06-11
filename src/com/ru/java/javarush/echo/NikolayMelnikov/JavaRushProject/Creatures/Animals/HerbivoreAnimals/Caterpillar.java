@@ -20,7 +20,9 @@ public class Caterpillar extends HerbivoreAnimal {
     {
         name = "Гусеница";
         weight = 0.01;
-        energy = 0;
-        hanger = 0;
+        maxEnergy = 0;
+        maxHunger = 0;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

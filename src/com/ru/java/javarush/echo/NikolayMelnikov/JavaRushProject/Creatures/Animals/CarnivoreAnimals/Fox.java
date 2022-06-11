@@ -18,7 +18,9 @@ public class Fox extends CarnivoreAnimal {
     {
         name = "Лиса";
         weight = 8;
-        energy = 2;
-        hanger = 2;
+        maxHunger = 2;
+        maxEnergy = 2;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

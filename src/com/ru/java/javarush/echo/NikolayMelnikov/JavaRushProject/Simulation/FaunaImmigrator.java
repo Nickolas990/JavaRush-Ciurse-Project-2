@@ -29,11 +29,9 @@ public class FaunaImmigrator {
         listOfTasks.add(new AnimalDeployer(Mouse.class));
         listOfTasks.add(new AnimalDeployer(Rabbit.class));
         listOfTasks.add(new AnimalDeployer(Sheep.class));
-        listOfTasks.add(new AnimalDeployer(Plant.class));
-
-
 
         ExecutorService service = Executors.newCachedThreadPool();
+        System.out.println(service.submit(new GrassSeeder()));
 
         for (Runnable task : listOfTasks) {
             System.out.println(service.submit(task));

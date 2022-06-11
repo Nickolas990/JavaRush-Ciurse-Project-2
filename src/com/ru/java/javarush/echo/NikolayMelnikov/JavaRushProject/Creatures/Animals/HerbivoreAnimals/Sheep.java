@@ -19,7 +19,9 @@ public class Sheep extends HerbivoreAnimal {
     {
         name = "Овца";
         weight = 70;
-        energy = 3;
-        hanger = 15;
+        maxEnergy = 3;
+        maxHunger = 15;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

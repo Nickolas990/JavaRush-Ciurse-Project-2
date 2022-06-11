@@ -19,7 +19,9 @@ public class Rabbit extends HerbivoreAnimal {
     {
         name = "Кролик";
         weight = 2;
-        energy = 2;
-        hanger = 0.45;
+        maxEnergy = 2;
+        maxHunger = 0.45;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

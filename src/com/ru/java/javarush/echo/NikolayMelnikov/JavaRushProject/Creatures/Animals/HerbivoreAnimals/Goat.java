@@ -19,7 +19,9 @@ public class Goat extends HerbivoreAnimal {
     {
         name = "Коза";
         weight = 60;
-        energy = 3;
-        hanger = 10;
+        maxHunger = 10;
+        maxEnergy = 3;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

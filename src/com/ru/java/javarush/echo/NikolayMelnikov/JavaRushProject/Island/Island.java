@@ -1,5 +1,6 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island;
 
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,9 +25,9 @@ public class Island {
         return instance;
     }
 
-    public void addCreature(Creature creature) {
-        Cell cell = getCell(creature.getPosition());
-        cell.addCreatureInCell(creature);
+    public void addAnimal(Animal animal) {
+        Cell cell = getCell(animal.getPosition());
+        cell.addAnimalInCell(animal);
     }
 
     public Cell getCell(int x, int y) {

@@ -21,7 +21,9 @@ public class Mouse extends HerbivoreAnimal {
     {
         name = "Мышь";
         weight = 0.05;
-        energy = 1;
-        hanger = 0.01;
+        maxEnergy = 1;
+        maxHunger = 0.01;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

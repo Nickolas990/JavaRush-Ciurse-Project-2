@@ -19,7 +19,9 @@ public class Wolf extends CarnivoreAnimal {
     {
         name = "Волк";
         weight = 50;
-        energy = 3;
-        hanger = 8;
+        maxHunger = 8;
+        maxEnergy = 3;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

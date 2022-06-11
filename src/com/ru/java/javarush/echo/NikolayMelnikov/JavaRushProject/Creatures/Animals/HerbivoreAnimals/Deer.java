@@ -19,7 +19,10 @@ public class Deer extends HerbivoreAnimal {
     {
         name = "Олень";
         weight = 300;
-        energy = 4;
-        hanger = 50;
+        maxHunger = 4;
+        maxEnergy = 50;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
+
     }
 }

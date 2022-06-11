@@ -18,7 +18,9 @@ public class Horse extends HerbivoreAnimal {
     {
         name = "Лошадь";
         weight = 400;
-        energy = 4;
-        hanger = 60;
+        maxEnergy = 4;
+        maxHunger = 60;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }
