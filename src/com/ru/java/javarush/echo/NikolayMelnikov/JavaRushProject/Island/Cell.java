@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class Cell {
 
     @ToString.Exclude
-    private final File JSON_SOURCE = new File("src/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Island/capacityofCell.json");
+  //  private final File JSON_SOURCE = new File("src/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Island/capacityofCell.json");
 
     private Coordinates coordinates = new Coordinates();
     protected Map<String, Long> creaturesInCell = new ConcurrentHashMap<>();
@@ -66,7 +66,7 @@ public class Cell {
     public Integer getHerbivoreAnimalsQty() {
         return fauna.stream()
                 .filter(e -> e instanceof HerbivoreAnimal)
-                .collect(Collectors.toList())
+                .toList()
                 .size();
     }
     public Integer getCarnivoreAnimalsQty() {

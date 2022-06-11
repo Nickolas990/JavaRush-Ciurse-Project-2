@@ -13,15 +13,19 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SoulOfAnimals implements Runnable{
-    public Animal animal;
+    Animal animal;
+    protected List<Cell> accessibleCells = new ArrayList<>();
 
 
     public SoulOfAnimals (Animal soul) {
         animal = soul;
     }
 
-    protected List<Cell> accessibleCells = new ArrayList<>();
-    {
+
+
+
+    @Override
+    public void run() {
         Coordinates coordinates = animal.getPosition();
 
         if (coordinates.getX() - 1 >= 0) {
@@ -30,29 +34,24 @@ public class SoulOfAnimals implements Runnable{
         if (coordinates.getY() - 1 >= 0) {
             accessibleCells.add(Island.instance.getCell(coordinates.getX(), coordinates.getY() - 1));
         }
-        if (coordinates.getX() + 1 <= Island.instance.getXSize()) {
+        if ((coordinates.getX() + 1) < Island.instance.getXSize()) {
             accessibleCells.add(Island.instance.getCell(coordinates.getX() + 1, coordinates.getY()));
         }
-        if (coordinates.getY() + 1 <= 0) {
+        if (coordinates.getY() + 1 < Island.instance.getYSize()) {
             accessibleCells.add(Island.instance.getCell(coordinates.getX(), coordinates.getY() + 1));
         }
-    }
-
-
-    @Override
-    public void run() {
-        while (animal.getCurrentEnergy() > 0) {
+        do {
             if (animal.getCurrentHanger() > animal.getCurrentHanger() / 2) {
-                Animal animalToBreed = chooseForBreed();
-                if (animalToBreed != null) {
-                    animal.breed(animalToBreed);
+                List<Animal> animalToBreed = chooseForBreed();
+                if (!animalToBreed.isEmpty()) {
+                    animal.breed(animalToBreed.get(0));
                 } else {
                     animal.moveTo(choosingDirection());
                 }
-            } else if (animal.getCurrentHanger() < animal.getCurrentHanger()/2) {
+            } else if (animal.getCurrentHanger() < animal.getCurrentHanger()/2 && animal.getCurrentEnergy() > 0) {
                 animal.eat();
                 }
-            }
+            } while (animal.getCurrentEnergy() > 1);
         }
 
 
@@ -61,18 +60,17 @@ public class SoulOfAnimals implements Runnable{
         if(animal instanceof CarnivoreAnimal) { System.out.println(this + " выбирает направление");
         return accessibleCells.stream()
                 .max(Comparator.comparing(Cell::getHerbivoreAnimalsQty))
-                .orElseGet(() -> Island.instance.getCell(animal.getPosition())); }
+                .orElse(Island.instance.getCell(animal.getPosition())); }
         else if (animal instanceof HerbivoreAnimal) {
             return accessibleCells.stream()
                     .min(Comparator.comparing(Cell::getCarnivoreAnimalsQty))
-                    .orElseGet(() -> Island.instance.getCell(animal.getPosition()));
+                    .orElse(Island.instance.getCell(animal.getPosition()));
         }
         else throw new RuntimeException("Неправильно задан тип животного");
     }
 
-    public Animal chooseForBreed() {
-        Class clazz = this.getClass();
+    public List<Animal> chooseForBreed() {
         Cell cell = Island.instance.getCell(animal.getPosition());
-        return (Animal) cell.getFauna().stream().filter(e -> e.getName().equals(animal.getName())).findAny().orElseGet(null);
+       return cell.getFauna().stream().filter(e -> e.getName().equals(animal.getName()) && !(e.equals(animal))).toList();
     }
 }

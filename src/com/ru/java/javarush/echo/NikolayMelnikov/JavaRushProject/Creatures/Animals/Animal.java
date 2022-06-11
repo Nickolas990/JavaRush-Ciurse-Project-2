@@ -34,23 +34,24 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
     @Override
     public void moveTo(Cell newCell) {
+        this.currentEnergy--;
         this.leaveCell();
         System.out.println(this + " перешел в клетку " + newCell.getCoordinates());
         newCell.addAnimalInCell(this);
-        this.currentEnergy--;
+
     }
 
 
     @Override
     public void breed(Animal animal) {
-        animal.currentEnergy--;
-        this.currentEnergy--;
         try {
             Island.instance.addAnimal(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
+        animal.currentEnergy--;
+        this.currentEnergy--;
     }
 
     public Animal chooseVictim() {

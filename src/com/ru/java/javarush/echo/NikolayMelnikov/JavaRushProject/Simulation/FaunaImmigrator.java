@@ -39,6 +39,6 @@ public class FaunaImmigrator {
 
         service.shutdown();
 
-        Island.instance.getIslandInfo();
+       // Island.instance.getIslandInfo();
     }
 }
