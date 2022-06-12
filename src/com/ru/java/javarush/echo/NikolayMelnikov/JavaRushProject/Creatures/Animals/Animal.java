@@ -1,9 +1,9 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.LuckNumber;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Behaivior.Breeding;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Behaivior.Eating;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Behaivior.Moving;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Breeding;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Eating;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Moving;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;

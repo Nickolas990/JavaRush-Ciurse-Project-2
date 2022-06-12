@@ -1,4 +1,4 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;

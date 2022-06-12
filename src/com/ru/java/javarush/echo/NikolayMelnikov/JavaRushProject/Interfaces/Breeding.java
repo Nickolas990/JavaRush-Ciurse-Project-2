@@ -1,4 +1,4 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Behaivior;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces;
 
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;

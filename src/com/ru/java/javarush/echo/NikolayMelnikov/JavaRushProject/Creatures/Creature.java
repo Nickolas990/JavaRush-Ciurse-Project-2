@@ -1,6 +1,6 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures;
 
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Behaivior.Mortal;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Mortal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;

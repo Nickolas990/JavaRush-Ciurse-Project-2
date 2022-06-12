@@ -75,4 +75,8 @@ public class Cell {
                 .collect(Collectors.toList())
                 .size();
     }
+
+    public Integer getPlantsQty() {
+        return flora.size();
+    }
 }

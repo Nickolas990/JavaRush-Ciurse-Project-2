@@ -1,8 +1,7 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.CoordinatesCreator;

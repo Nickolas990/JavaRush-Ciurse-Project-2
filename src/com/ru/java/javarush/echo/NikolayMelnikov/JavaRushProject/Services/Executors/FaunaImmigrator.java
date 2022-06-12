@@ -1,9 +1,9 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Executors;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.CarnivoreAnimals.*;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals.*;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.AnimalDeployer;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.GrassSeeder;
 
 import java.util.ArrayList;
 import java.util.List;

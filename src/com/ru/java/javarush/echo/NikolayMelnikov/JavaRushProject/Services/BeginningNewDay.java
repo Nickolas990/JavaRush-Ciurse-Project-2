@@ -1,6 +1,5 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services;
 
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 

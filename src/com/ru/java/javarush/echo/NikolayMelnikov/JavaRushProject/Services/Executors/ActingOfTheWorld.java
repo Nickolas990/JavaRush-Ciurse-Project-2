@@ -1,8 +1,9 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Executors;
 
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.SoulOfAnimals;
 
 
 import java.util.concurrent.ExecutorService;

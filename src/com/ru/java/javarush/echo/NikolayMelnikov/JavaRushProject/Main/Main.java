@@ -2,22 +2,12 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Main;
 
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals.Horse;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation.ActingOfTheWorld;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation.FaunaImmigrator;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation.GrassSeeder;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Simulation.SoulOfAnimals;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.SoulOfAnimals;
 
 
 import java.io.IOException;
-
-import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import static com.fasterxml.jackson.databind.type.LogicalType.Map;
 
 
 public class Main {
@@ -58,7 +48,6 @@ public class Main {
 
         new SoulOfAnimals(horse1).run();
         System.out.println(Island.instance.getCell(20, 19));
-
 
     }
 }
