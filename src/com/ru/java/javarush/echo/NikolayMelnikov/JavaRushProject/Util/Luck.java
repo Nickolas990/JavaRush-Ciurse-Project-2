@@ -1,5 +1,6 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util;
 
+// TODO: 13.06.2022 Добавить в таблицу растения, не забыть указать номер удачи в классе Plant 
 public class Luck {
     public static final Integer[][] luckTable = {
             {null, 0, 0, 0, 0, 10, 15, 60, 80, 60, 70, 15, 10, 40, 0},

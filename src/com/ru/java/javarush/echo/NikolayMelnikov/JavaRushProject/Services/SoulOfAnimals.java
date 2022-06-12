@@ -42,7 +42,7 @@ public class SoulOfAnimals implements Runnable{
         }
         do {
             act();
-            } while (animal.getCurrentEnergy() > 1);
+            } while (animal.getCurrentEnergy() > 0);
         }
 
 
@@ -81,7 +81,7 @@ public class SoulOfAnimals implements Runnable{
 
     public void act() {
         Cell cell = Island.instance.getCell(animal.getPosition());
-        if (animal.getCurrentHanger() < animal.getCurrentHanger()*0.5) {
+        if (animal.getCurrentHanger() < animal.getMaxHunger()*0.5) {
             if ( animal instanceof CarnivoreAnimal && cell.getHerbivoreAnimalsQty() > 0 ||
                     animal instanceof HerbivoreAnimal && cell.getPlantsQty() > 0) {
                 animal.eat();

@@ -2,6 +2,7 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Main;
 
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals.Horse;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.SoulOfAnimals;
@@ -37,6 +38,12 @@ public class Main {
 //        }
 
         Cell cell = Island.instance.getCell(20, 19);
+        cell.addPlantInCell(new Plant(cell.getCoordinates()));
+        cell.addPlantInCell(new Plant(cell.getCoordinates()));
+        cell.addPlantInCell(new Plant(cell.getCoordinates()));
+        cell.addPlantInCell(new Plant(cell.getCoordinates()));
+        cell.addPlantInCell(new Plant(cell.getCoordinates()));
+        cell.addPlantInCell(new Plant(cell.getCoordinates()));
 
         Horse horse1 = new Horse(20, 18);
         Horse horse2 = new Horse(20,19);
@@ -44,7 +51,11 @@ public class Main {
         Island.instance.addAnimal(horse1);
         Island.instance.addAnimal(horse2);
 
+        horse1.setCurrentHanger(0);
+
         System.out.println(Island.instance.getCell(horse2.getPosition()).getHerbivoreAnimalsQty());
+
+
 
         new SoulOfAnimals(horse1).run();
         System.out.println(Island.instance.getCell(20, 19));

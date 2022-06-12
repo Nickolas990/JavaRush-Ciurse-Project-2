@@ -38,7 +38,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         this.leaveCell();
         System.out.println(this + " перешел в клетку " + newCell.getCoordinates());
         newCell.addAnimalInCell(this);
-
+        this.setPosition(newCell.getCoordinates());
     }
 
 
