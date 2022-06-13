@@ -39,8 +39,11 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     @Override
     public void moveTo(Cell newCell) {
         this.currentEnergy--;
+        if (currentEnergy < 0) {
+            throw new RuntimeException("Нет доступных очков хода");
+        }
         this.leaveCell();
-        System.out.println(this + " перешел в клетку " + newCell.getCoordinates());
+        //System.out.println(this + " перешел в клетку " + newCell.getCoordinates());
         newCell.addAnimalInCell(this);
         this.setPosition(newCell.getCoordinates());
         this.initializeAccessibleCells();
@@ -75,7 +78,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     public void tryToEat(Animal victim) {
         Integer luck = Luck.getLuck(this.getClass().getAnnotation(LuckNumber.class).value(), victim.getClass().getAnnotation(LuckNumber.class).value());
         if (ThreadLocalRandom.current().nextInt(0, 101) < luck) {
-            System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));
+           // System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));
             this.currentHanger += victim.getWeight();
             this.setStarve(3);
             if (this.currentHanger > this.maxHunger) {
@@ -83,10 +86,11 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
             }
             victim.die();
         } else {
-            System.out.println(String.format("%s не смог съесть %s", this.getName(), victim.getName()));
+           // System.out.println(String.format("%s не смог съесть %s", this.getName(), victim.getName()));
         }
     }
     private void initializeAccessibleCells() {
+        accessibleCells.clear();
         Coordinates coordinates = this.getPosition();
 
         if (coordinates.getX() - 1 >= 0) {

@@ -18,7 +18,7 @@ public class ActingOfTheWorld implements Runnable{
             for (int j = 0; j < Island.instance.getYSize(); j++) {
                 Cell cell = Island.instance.getCell(i, j);
                 if (!cell.getFauna().isEmpty()) {
-                    cell.getFauna().stream().forEach(e -> System.out.println(service.submit(new SoulOfAnimals(e))));
+                    cell.getFauna().stream().forEach(e -> service.submit(new SoulOfAnimals(e)));
                 }
             }
         }
