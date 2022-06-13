@@ -1,5 +1,7 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures;
 
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Mortal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
@@ -17,7 +19,7 @@ public abstract class Creature implements Mortal {
     protected String name;
     protected double weight;
     protected int maxEnergy;
-    protected int currentEnergy;
+    protected volatile int currentEnergy;
     protected double maxHunger;
     protected double currentHanger;
     protected int starve;
@@ -60,9 +62,12 @@ public abstract class Creature implements Mortal {
 
     public synchronized void leaveCell() {
         Cell cell =  Island.instance.getCell(this.getPosition());
-        cell.getFauna().remove(this);
-        Integer qtyofAnimals = cell.getCurrentCapacityOfCell().get(this.getName());
-        cell.getCurrentCapacityOfCell().put(this.getName(), qtyofAnimals - 1);
+        if (this instanceof Animal) {
+            cell.leavingOfAnimal(this);
+        } else if (this instanceof Plant) {
+            cell.leavingOfPlant(this);
+        }
+
     }
 
     @Override

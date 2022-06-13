@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.File;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -56,6 +55,7 @@ public class Cell {
 
     public synchronized void addPlantInCell(Plant plant) {
         flora.add(plant);
+        qtyOfGrass.merge(plant.getName(), 1, Integer::sum);
         creaturesInCell.merge(plant.getName(), 1L, Long::sum);
     }
 
@@ -78,5 +78,31 @@ public class Cell {
 
     public Integer getPlantsQty() {
         return flora.size();
+    }
+
+    public void leavingOfPlant(Creature creature) {
+        flora.remove(creature);
+        qtyOfGrass.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal - newVal);
+        if (qtyOfGrass.get(creature.getName()) < 0) {
+            qtyOfGrass.remove(creature.getName());
+        }
+        removeThis(creature);
+    }
+
+    public void leavingOfAnimal(Creature creature) {
+        fauna.remove(creature);
+        currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal + newVal);
+
+        if (currentCapacityOfCell.get(creature.getName()) >= creature.getClass().getAnnotation(MaxCapacity.class).value()) {
+            currentCapacityOfCell.remove(creature.getName());
+        }
+        removeThis(creature);
+    }
+
+    private void removeThis(Creature creature) {
+        creaturesInCell.merge(creature.getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
+        if (creaturesInCell.get(creature.getName()) <=0) {
+            creaturesInCell.remove(creature.getName());
+        }
     }
 }

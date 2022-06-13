@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -23,13 +24,16 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
 
     protected int starve = 3;
+    protected List<Cell> accessibleCells = new ArrayList<>();
 
 
     public Animal(Coordinates position) {
         super(position);
+        this.initializeAccessibleCells();
     }
     public Animal (int x, int y) {
         super(new Coordinates(x, y));
+        initializeAccessibleCells();
     }
 
     @Override
@@ -39,6 +43,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         System.out.println(this + " перешел в клетку " + newCell.getCoordinates());
         newCell.addAnimalInCell(this);
         this.setPosition(newCell.getCoordinates());
+        this.initializeAccessibleCells();
     }
 
 
@@ -79,6 +84,22 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
             victim.die();
         } else {
             System.out.println(String.format("%s не смог съесть %s", this.getName(), victim.getName()));
+        }
+    }
+    private void initializeAccessibleCells() {
+        Coordinates coordinates = this.getPosition();
+
+        if (coordinates.getX() - 1 >= 0) {
+            accessibleCells.add(Island.instance.getCell(coordinates.getX() - 1, coordinates.getY()));
+        }
+        if (coordinates.getY() - 1 >= 0) {
+            accessibleCells.add(Island.instance.getCell(coordinates.getX(), coordinates.getY() - 1));
+        }
+        if ((coordinates.getX() + 1) < Island.instance.getXSize()) {
+            accessibleCells.add(Island.instance.getCell(coordinates.getX() + 1, coordinates.getY()));
+        }
+        if (coordinates.getY() + 1 < Island.instance.getYSize()) {
+            accessibleCells.add(Island.instance.getCell(coordinates.getX(), coordinates.getY() + 1));
         }
     }
 }

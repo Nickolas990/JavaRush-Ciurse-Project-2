@@ -14,7 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SoulOfAnimals implements Runnable{
     Animal animal;
-    protected List<Cell> accessibleCells = new ArrayList<>();
+
 
 
     public SoulOfAnimals (Animal soul) {
@@ -26,20 +26,6 @@ public class SoulOfAnimals implements Runnable{
 
     @Override
     public void run() {
-        Coordinates coordinates = animal.getPosition();
-
-        if (coordinates.getX() - 1 >= 0) {
-            accessibleCells.add(Island.instance.getCell(coordinates.getX() - 1, coordinates.getY()));
-        }
-        if (coordinates.getY() - 1 >= 0) {
-            accessibleCells.add(Island.instance.getCell(coordinates.getX(), coordinates.getY() - 1));
-        }
-        if ((coordinates.getX() + 1) < Island.instance.getXSize()) {
-            accessibleCells.add(Island.instance.getCell(coordinates.getX() + 1, coordinates.getY()));
-        }
-        if (coordinates.getY() + 1 < Island.instance.getYSize()) {
-            accessibleCells.add(Island.instance.getCell(coordinates.getX(), coordinates.getY() + 1));
-        }
         do {
             act();
             } while (animal.getCurrentEnergy() > 0);
@@ -49,11 +35,11 @@ public class SoulOfAnimals implements Runnable{
 
     public Cell choosingDirectionForEat() {
         if(animal instanceof CarnivoreAnimal) { System.out.println(this + " выбирает направление");
-        return accessibleCells.stream()
+        return animal.getAccessibleCells().stream()
                 .max(Comparator.comparing(Cell::getHerbivoreAnimalsQty))
                 .orElse(randomCell()); }
         else if (animal instanceof HerbivoreAnimal) {
-            return accessibleCells.stream()
+            return animal.getAccessibleCells().stream()
                     .max(Comparator.comparing(Cell::getPlantsQty))
                     .orElse(randomCell());
         }
@@ -61,7 +47,7 @@ public class SoulOfAnimals implements Runnable{
     }
 
     public Cell choosingDirectionForBreed() {
-        return accessibleCells.stream()
+        return animal.getAccessibleCells().stream()
                 .filter(e -> e.getCurrentCapacityOfCell()
                         .containsKey(animal.getName()))
                 .findFirst()
@@ -70,7 +56,7 @@ public class SoulOfAnimals implements Runnable{
     }
 
     private Cell randomCell(){
-        return accessibleCells.get(ThreadLocalRandom.current().nextInt(0, 4));
+        return animal.getAccessibleCells().get(ThreadLocalRandom.current().nextInt(0, animal.getAccessibleCells().size()));
     }
 
     public List<Animal> chooseForBreed() {

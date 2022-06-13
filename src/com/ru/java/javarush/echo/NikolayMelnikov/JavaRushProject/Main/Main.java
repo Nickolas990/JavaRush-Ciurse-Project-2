@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
 //        Scanner scanner = new Scanner(System.in);
 //        FaunaImmigrator.immigration();
@@ -47,9 +47,11 @@ public class Main {
 
         Horse horse1 = new Horse(20, 18);
         Horse horse2 = new Horse(20,19);
+        Horse horse3 = new Horse(19,19);
 
         Island.instance.addAnimal(horse1);
         Island.instance.addAnimal(horse2);
+        Island.instance.addAnimal(horse3);
 
         horse1.setCurrentHanger(0);
 
@@ -57,8 +59,15 @@ public class Main {
 
 
 
-        new SoulOfAnimals(horse1).run();
+       // new SoulOfAnimals(horse1).run();
+        new Thread(new SoulOfAnimals(horse1)).start();
+        Thread.sleep(1000);
+        new Thread(new SoulOfAnimals(horse2)).start();
+        //new SoulOfAnimals(horse2).run();
+        System.out.println(Island.instance.getCell(20, 18));
         System.out.println(Island.instance.getCell(20, 19));
+        System.out.println(Island.instance.getCell(19, 19));
+        System.out.println(horse1);
 
     }
 }
