@@ -2,8 +2,14 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.GrassSeeder;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Settings;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Getter
 @Setter
@@ -12,13 +18,15 @@ public class Island {
     public static final Island instance = new Island();
 
     Cell[][] island;
-    private int xSize = 100;
-    private int ySize = 20;
+    private int xSize = Settings.XSize;
+    private int ySize = Settings.YSize;
+
 
 
     private Island() {
         island = new Cell[xSize][ySize];
         initialiseIsland();
+
     }
 
     public static Island createNewStandardField() {

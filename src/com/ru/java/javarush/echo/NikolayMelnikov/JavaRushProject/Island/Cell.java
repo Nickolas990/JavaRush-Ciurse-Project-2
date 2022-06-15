@@ -21,8 +21,6 @@ import java.util.stream.Collectors;
 public class Cell {
 
     @ToString.Exclude
-  //  private final File JSON_SOURCE = new File("src/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Island/capacityofCell.json");
-
     private Coordinates coordinates = new Coordinates();
     private Map<String, Long> creaturesInCell = new ConcurrentHashMap<>();
     private Map<String, Integer> currentCapacityOfCell = new ConcurrentHashMap<>();
@@ -91,10 +89,10 @@ public class Cell {
 
     public void leavingOfAnimal(Creature creature) {
         fauna.remove(creature);
-        currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal + newVal);
+        currentCapacityOfCell.merge(creature.getName(), 1, Integer::sum);
 
         if (currentCapacityOfCell.get(creature.getName()) >= creature.getClass().getAnnotation(MaxCapacity.class).value()) {
-            removeThis(creature);
+            currentCapacityOfCell.remove(creature.getName());
         }
         removeThis(creature);
     }

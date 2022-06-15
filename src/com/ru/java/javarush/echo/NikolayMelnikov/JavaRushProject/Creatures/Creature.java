@@ -56,8 +56,7 @@ public abstract class Creature implements Mortal {
 
 
     @Override
-    public void die() {
-        Mortal.super.die();
+    public synchronized void die() {
         isAlive = false;
         leaveCell();
     }
@@ -77,10 +76,12 @@ public abstract class Creature implements Mortal {
         return "{" + name +
                 '}';
     }
-    public int reduceEnergy() {
+    public synchronized int reduceEnergy() {
         return currentEnergy.decrementAndGet();
     }
-    public void restoreEnergy() {
+
+
+    public synchronized void restoreEnergy() {
         currentEnergy.set(maxEnergy);
         currentHanger -= maxEnergy;
         if (currentHanger < 0) {

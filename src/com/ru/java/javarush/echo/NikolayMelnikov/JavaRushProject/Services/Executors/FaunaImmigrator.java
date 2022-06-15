@@ -2,6 +2,7 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Execu
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.CarnivoreAnimals.*;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals.*;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.AnimalDeployer;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.GrassSeeder;
 
@@ -11,8 +12,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class FaunaImmigrator {
+    private static List<Runnable> listOfTasks = new ArrayList<>();
     public static void immigration() {
-        List<Runnable> listOfTasks = new ArrayList<>();
+
 
         listOfTasks.add(new AnimalDeployer(Bear.class));
         listOfTasks.add(new AnimalDeployer(Boa.class));
@@ -39,6 +41,6 @@ public class FaunaImmigrator {
 
         service.shutdown();
 
-       // Island.instance.getIslandInfo();
+        //Island.instance.getIslandInfo();
     }
 }

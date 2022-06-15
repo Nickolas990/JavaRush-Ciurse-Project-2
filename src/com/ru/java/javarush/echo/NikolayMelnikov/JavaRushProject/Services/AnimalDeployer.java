@@ -5,6 +5,7 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Anima
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.CoordinatesCreator;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Settings;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ThreadLocalRandom;
@@ -12,8 +13,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class AnimalDeployer implements Runnable {
 
     Class creatureClass;
-    int islandLength = Island.instance.getXSize();
-    int islandWidth = Island.instance.getYSize();
+    int islandLength = Settings.XSize;
+    int islandWidth = Settings.YSize;
 
     public AnimalDeployer(Class<?> clazz) {
         this.creatureClass = clazz;
