@@ -21,27 +21,8 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         Scanner scanner = new Scanner(System.in);
-        FaunaImmigrator.immigration();
-        Thread grass = new Thread(new GrassSeeder());
-        grass.start();
-        try {
-            grass.join();
-        } catch (InterruptedException e) {
-            System.out.println("Interrupted");
-        }
-        System.out.println("Животные и растения на своих местах. Начать симуляцию?");
-        scanner.nextLine();
+        new Starter().startSimulation();
 
-        ExecutorService service = Executors.newCachedThreadPool();
-        service.submit(new ActingOfTheWorld());
-
-        Thread act = new Thread(new ActingOfTheWorld());
-        act.start();
-        try {
-            act.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
  //       Cell cell = Island.instance.getCell(20, 19);
       //  cell.addPlantInCell(new Plant(cell.getCoordinates()));

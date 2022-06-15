@@ -4,6 +4,8 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.Luc
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @MaxCapacity(10)
 @LuckNumber(12)
 public class Buffalo extends HerbivoreAnimal {
@@ -22,7 +24,7 @@ public class Buffalo extends HerbivoreAnimal {
         weight = 700;
         maxEnergy = 3;
         maxHunger = 100;
-        currentEnergy = maxEnergy;
+        currentEnergy = new AtomicInteger(maxEnergy);
         currentHanger = maxHunger;
     }
 

@@ -28,7 +28,7 @@ public class SoulOfAnimals implements Runnable{
     public void run() {
         do {
             act();
-            } while (animal.getCurrentEnergy() > 0);
+            } while (animal.getCurrentEnergy().get() > 0);
         }
 
 
@@ -62,7 +62,7 @@ public class SoulOfAnimals implements Runnable{
     public List<Animal> chooseForBreed() {
         Cell cell = Island.instance.getCell(animal.getPosition());
        return cell.getFauna().stream().filter(e -> e.getName().equals(animal.getName())
-               && !(e.equals(animal)) && e.getCurrentEnergy() > 0).toList();
+               && !(e.equals(animal)) && e.getCurrentEnergy().get() > 0).toList();
     }
 
     public void act() {

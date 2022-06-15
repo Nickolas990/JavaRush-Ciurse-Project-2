@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 @Setter
@@ -38,8 +39,8 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
     @Override
     public void moveTo(Cell newCell) {
-        this.currentEnergy--;
-        if (currentEnergy < 0) {
+        reduceEnergy();
+        if (getCurrentEnergy().get() < 0) {
             throw new RuntimeException("Нет доступных очков хода");
         }
         this.leaveCell();
@@ -58,8 +59,8 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
-        animal.currentEnergy--;
-        this.currentEnergy--;
+        animal.reduceEnergy();
+        this.reduceEnergy();
     }
 
     public Animal chooseVictim() {
@@ -106,4 +107,9 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
             accessibleCells.add(Island.instance.getCell(coordinates.getX(), coordinates.getY() + 1));
         }
     }
+
+    public void endOfThisDay() {
+
+    }
+
 }

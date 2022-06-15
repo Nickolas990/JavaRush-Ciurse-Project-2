@@ -45,6 +45,6 @@ public abstract class HerbivoreAnimal extends Animal {
                 currentHanger = maxHunger;
             }
         }
-        this.currentEnergy--;
+        reduceEnergy();
     }
 }

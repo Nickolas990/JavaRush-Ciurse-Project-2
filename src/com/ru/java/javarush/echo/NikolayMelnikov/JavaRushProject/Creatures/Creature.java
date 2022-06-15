@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @Getter
 @Setter
 @ToString
@@ -19,7 +21,7 @@ public abstract class Creature implements Mortal {
     protected String name;
     protected double weight;
     protected int maxEnergy;
-    protected volatile int currentEnergy;
+    protected AtomicInteger currentEnergy;
     protected double maxHunger;
     protected double currentHanger;
     protected int starve;
@@ -74,5 +76,19 @@ public abstract class Creature implements Mortal {
     public String toString() {
         return "{" + name +
                 '}';
+    }
+    public int reduceEnergy() {
+        return currentEnergy.decrementAndGet();
+    }
+    public void restoreEnergy() {
+        currentEnergy.set(maxEnergy);
+        currentHanger -= maxEnergy;
+        if (currentHanger < 0) {
+            currentHanger = 0;
+            starve--;
+            if (starve < 0) {
+                die();
+            }
+        }
     }
 }

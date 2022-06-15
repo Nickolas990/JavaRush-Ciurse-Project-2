@@ -4,6 +4,8 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.Luc
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @MaxCapacity(150)
 @LuckNumber(7)
 public class Rabbit extends HerbivoreAnimal {
@@ -21,7 +23,7 @@ public class Rabbit extends HerbivoreAnimal {
         weight = 2;
         maxEnergy = 2;
         maxHunger = 0.45;
-        currentEnergy = maxEnergy;
+        currentEnergy = new AtomicInteger(maxEnergy);
         currentHanger = maxHunger;
     }
 }

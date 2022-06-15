@@ -11,9 +11,10 @@ import java.util.concurrent.Executors;
 
 public class ActingOfTheWorld implements Runnable{
 
-    ExecutorService service = Executors.newSingleThreadExecutor();
+    ExecutorService service = Executors.newCachedThreadPool();
 
     public void run() {
+        System.out.println("Животные начинают движение...");
         for (int i = 0; i < Island.instance.getXSize(); i++) {
             for (int j = 0; j < Island.instance.getYSize(); j++) {
                 Cell cell = Island.instance.getCell(i, j);
