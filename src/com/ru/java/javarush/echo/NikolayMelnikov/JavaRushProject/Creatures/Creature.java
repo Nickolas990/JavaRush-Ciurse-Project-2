@@ -76,7 +76,7 @@ public abstract class Creature implements Mortal {
         return "{" + name +
                 '}';
     }
-    public synchronized int reduceEnergy() {
+    public int reduceEnergy() {
         return currentEnergy.decrementAndGet();
     }
 

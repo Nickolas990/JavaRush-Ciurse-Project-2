@@ -36,7 +36,7 @@ public class FaunaImmigrator {
         service.submit(new GrassSeeder());
 
         for (Runnable task : listOfTasks) {
-            System.out.println(service.submit(task));
+            service.submit(task);
         }
 
         service.shutdown();

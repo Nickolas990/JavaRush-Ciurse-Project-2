@@ -38,7 +38,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     }
 
     @Override
-    public void moveTo(Cell newCell) {
+    public synchronized void moveTo(Cell newCell) {
         reduceEnergy();
         if (getCurrentEnergy().get() < 0) {
             throw new RuntimeException("Нет доступных очков хода");
@@ -52,7 +52,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
 
     @Override
-    public void breed(Animal animal) {
+    public synchronized void breed(Animal animal) {
         try {
             Island.instance.addAnimal(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
@@ -76,7 +76,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         return accessibleAnimals.stream().max(Comparator.comparing(Creature::getWeight)).orElseGet(this::chooseVictim);
     }
 
-    public void tryToEat(Animal victim) {
+    public synchronized void tryToEat(Animal victim) {
         Integer luck = Luck.getLuck(this.getClass().getAnnotation(LuckNumber.class).value(), victim.getClass().getAnnotation(LuckNumber.class).value());
         if (ThreadLocalRandom.current().nextInt(0, 101) < luck) {
            // System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));

@@ -54,7 +54,7 @@ public class Cell {
     public synchronized void addPlantInCell(Plant plant) {
         flora.add(plant);
         qtyOfGrass.merge(plant.getName(), 1L, Long::sum);
-        creaturesInCell.merge(plant.getName(), 1L, Long::sum);
+       // creaturesInCell.merge(plant.getName(), 1L, Long::sum);
     }
 
     private synchronized void capacityOfCellInit(Creature creature) {
@@ -102,5 +102,9 @@ public class Cell {
         if (creaturesInCell.get(creature.getName()) < 0) {
             creaturesInCell.remove(creature.getName());
         }
+    }
+    public void killAll() {
+        fauna.stream().forEach(Creature::die);
+        flora.stream().forEach(Creature::die);
     }
 }
