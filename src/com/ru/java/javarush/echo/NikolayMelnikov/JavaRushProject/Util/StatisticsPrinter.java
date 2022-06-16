@@ -16,8 +16,8 @@ import java.util.concurrent.Executors;
 public class StatisticsPrinter implements Printer {
     public Map<String, Long> quantityOfAnimals = new ConcurrentHashMap<>();
     public Map<String, Long> quantityOfPlants = new ConcurrentHashMap<>();
-    public Integer carnivoresQuantity;
-    public Integer herbivoresQuantity;
+    public Integer carnivoresQuantity = 0;
+    public Integer herbivoresQuantity = 0;
     ExecutorService service = Executors.newCachedThreadPool();
 
     @Override

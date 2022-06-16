@@ -6,6 +6,9 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Anima
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals.HerbivoreAnimal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
+
+
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,7 +30,6 @@ public class Cell {
     private Map<String, Long> qtyOfGrass = new ConcurrentHashMap<>();
 
 
-
     private List<Animal> fauna = new CopyOnWriteArrayList<>();
     private  List<Plant> flora = new CopyOnWriteArrayList<>();
 
@@ -37,12 +39,12 @@ public class Cell {
         coordinates.setY(y);
     }
 
-    public synchronized void addAnimalInCell(Animal animal) {
+    public void addAnimalInCell(Animal animal) {
         fauna.add(animal);
         creaturesInCell.merge(animal.getName(), 1L, Long::sum);
         updateCapacity(animal);
         if (currentCapacityOfCell.get(animal.getName()) <=0 ){
-            System.err.println(String.format("%s погиб, нет места"));
+           // System.err.println(String.format("%s погиб, нет места"));
             animal.die();
         }
     }
@@ -51,7 +53,7 @@ public class Cell {
         currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal - newVal);
     }
 
-    public synchronized void addPlantInCell(Plant plant) {
+    public void addPlantInCell(Plant plant) {
         flora.add(plant);
         qtyOfGrass.merge(plant.getName(), 1L, Long::sum);
        // creaturesInCell.merge(plant.getName(), 1L, Long::sum);
@@ -99,7 +101,7 @@ public class Cell {
 
     private void removeThis(Creature creature) {
         creaturesInCell.merge(creature.getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
-        if (creaturesInCell.get(creature.getName()) < 0) {
+        if (creaturesInCell.get(creature.getName()) < 0 || creaturesInCell.get(creature.getName()) != null ) {
             creaturesInCell.remove(creature.getName());
         }
     }

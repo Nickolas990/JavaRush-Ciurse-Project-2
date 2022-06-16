@@ -1,15 +1,10 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.GrassSeeder;
+
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Settings;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 @Getter
 @Setter

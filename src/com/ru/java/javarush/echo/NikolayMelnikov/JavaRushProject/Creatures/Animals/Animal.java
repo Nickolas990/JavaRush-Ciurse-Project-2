@@ -38,13 +38,12 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     }
 
     @Override
-    public synchronized void moveTo(Cell newCell) {
+    public void moveTo(Cell newCell) {
         reduceEnergy();
         if (getCurrentEnergy().get() < 0) {
             throw new RuntimeException("Нет доступных очков хода");
         }
         this.leaveCell();
-        //System.out.println(this + " перешел в клетку " + newCell.getCoordinates());
         newCell.addAnimalInCell(this);
         this.setPosition(newCell.getCoordinates());
         this.initializeAccessibleCells();
@@ -52,7 +51,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
 
     @Override
-    public synchronized void breed(Animal animal) {
+    public void breed(Animal animal) {
         try {
             Island.instance.addAnimal(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
@@ -73,10 +72,10 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
                         e.getClass()
                                 .getAnnotation(LuckNumber.class).value()) > 0)
                 .toList();
-        return accessibleAnimals.stream().max(Comparator.comparing(Creature::getWeight)).orElseGet(this::chooseVictim);
+        return accessibleAnimals.stream().max(Comparator.comparing(Creature::getWeight)).orElse(accessibleAnimals.get(ThreadLocalRandom.current().nextInt(0, accessibleAnimals.size())));
     }
 
-    public synchronized void tryToEat(Animal victim) {
+    public void tryToEat(Animal victim) {
         Integer luck = Luck.getLuck(this.getClass().getAnnotation(LuckNumber.class).value(), victim.getClass().getAnnotation(LuckNumber.class).value());
         if (ThreadLocalRandom.current().nextInt(0, 101) < luck) {
            // System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));
@@ -86,8 +85,6 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
                 this.currentHanger = this.maxHunger;
             }
             victim.die();
-        } else {
-           // System.out.println(String.format("%s не смог съесть %s", this.getName(), victim.getName()));
         }
     }
     private void initializeAccessibleCells() {

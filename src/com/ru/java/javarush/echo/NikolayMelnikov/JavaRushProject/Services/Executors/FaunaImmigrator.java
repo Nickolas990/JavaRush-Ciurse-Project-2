@@ -6,15 +6,16 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.AnimalDeployer;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.GrassSeeder;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class FaunaImmigrator {
-    private static List<Runnable> listOfTasks = new ArrayList<>();
-    public static void immigration() {
 
+public class FaunaImmigrator {
+    private List<Runnable> listOfTasks = new ArrayList<>();
+    public  void immigration() {
 
         listOfTasks.add(new AnimalDeployer(Bear.class));
         listOfTasks.add(new AnimalDeployer(Boa.class));
@@ -33,11 +34,8 @@ public class FaunaImmigrator {
         listOfTasks.add(new AnimalDeployer(Sheep.class));
 
         ExecutorService service = Executors.newCachedThreadPool();
-        service.submit(new GrassSeeder());
 
-        for (Runnable task : listOfTasks) {
-            service.submit(task);
-        }
+        listOfTasks.stream().forEach(e -> service.submit(e));
 
         service.shutdown();
 
