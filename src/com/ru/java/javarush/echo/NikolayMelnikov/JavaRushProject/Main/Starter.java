@@ -42,6 +42,7 @@ public class Starter implements Runnable {
                     throw new RuntimeException(e);
                 }
 
+
                 System.out.println(String.format("День %d окончен, состояние острова:" , ++day));
                 printer.print();
                 System.out.println("Начать новый день?");

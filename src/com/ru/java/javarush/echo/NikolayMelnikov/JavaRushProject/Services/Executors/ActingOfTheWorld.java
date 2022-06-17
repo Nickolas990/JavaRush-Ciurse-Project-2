@@ -9,6 +9,7 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Settings;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class ActingOfTheWorld implements Runnable{
 
@@ -27,6 +28,10 @@ public class ActingOfTheWorld implements Runnable{
                 }
             }
         }
-        service.shutdown();
+        try {
+            service.awaitTermination(30, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

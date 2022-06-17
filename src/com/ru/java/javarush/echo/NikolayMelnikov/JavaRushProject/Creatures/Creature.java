@@ -61,15 +61,7 @@ public abstract class Creature implements Mortal {
         leaveCell();
     }
 
-    public synchronized void leaveCell() {
-        Cell cell =  Island.instance.getCell(this.getPosition());
-        if (this instanceof Animal) {
-            cell.leavingOfAnimal(this);
-        } else if (this instanceof Plant) {
-            cell.leavingOfPlant(this);
-        }
-
-    }
+    public abstract void leaveCell();
 
     @Override
     public String toString() {

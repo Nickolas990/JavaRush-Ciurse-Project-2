@@ -1,6 +1,7 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.LuckNumber;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Breeding;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Eating;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Moving;
@@ -9,6 +10,7 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Luck;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Randomizer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,23 +45,42 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         if (getCurrentEnergy().get() < 0) {
             throw new RuntimeException("Нет доступных очков хода");
         }
-        this.leaveCell();
+        leaveCell();
         newCell.addAnimalInCell(this);
-        this.setPosition(newCell.getCoordinates());
-        this.initializeAccessibleCells();
+        setPosition(newCell.getCoordinates());
+        initializeAccessibleCells();
     }
 
 
     @Override
-    public void breed(Animal animal) {
-        try {
-            Island.instance.addAnimal(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
+    public void breed() {
+        List<Animal> breeders = chooseForBreed();
+        if (!breeders.isEmpty()) {
+            Animal animal = breeders.get(Randomizer.randomize(0, breeders.size()));
+            try {
+                Island.instance.addAnimal(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+                System.out.println(e.getMessage());
+                throw new RuntimeException(e);
+            }
+            animal.reduceEnergy();
+            this.reduceEnergy();
+        } else {
+            moveTo(choosingDirectionForBreed());
         }
-        animal.reduceEnergy();
-        this.reduceEnergy();
+    }
+    public Cell choosingDirectionForBreed() {
+        return getAccessibleCells().stream()
+                .filter(e -> e.getCurrentCapacityOfCell()
+                        .containsKey(getName()))
+                .findFirst()
+                .orElse(accessibleCells.get(Randomizer.randomize(0, accessibleCells.size())));
+
+    }
+    public List<Animal> chooseForBreed() {
+        Cell cell = Island.instance.getCell(getPosition());
+        return cell.getFauna().stream().filter(e -> e.getName().equals(getName())
+                && !(e.equals(this)) && e.getCurrentEnergy().get() > 0).toList();
     }
 
     public Animal chooseVictim() {
@@ -72,7 +93,10 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
                         e.getClass()
                                 .getAnnotation(LuckNumber.class).value()) > 0)
                 .toList();
-        return accessibleAnimals.stream().max(Comparator.comparing(Creature::getWeight)).orElse(accessibleAnimals.get(ThreadLocalRandom.current().nextInt(0, accessibleAnimals.size())));
+        return accessibleAnimals.stream()
+                .max(Comparator.comparing(Creature::getWeight))
+                .orElse(accessibleAnimals.get(ThreadLocalRandom.current()
+                        .nextInt(0, accessibleAnimals.size())));
     }
 
     public void tryToEat(Animal victim) {
@@ -105,8 +129,11 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         }
     }
 
-    public void endOfThisDay() {
-
+    @Override
+    public void leaveCell() {
+        {
+            Cell cell =  Island.instance.getCell(this.getPosition());
+                cell.leavingOfAnimal(this);
+        }
     }
-
 }

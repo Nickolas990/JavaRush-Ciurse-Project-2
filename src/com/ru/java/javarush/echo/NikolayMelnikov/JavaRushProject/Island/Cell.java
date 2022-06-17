@@ -8,7 +8,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creat
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 
 
-import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -44,7 +43,6 @@ public class Cell {
         creaturesInCell.merge(animal.getName(), 1L, Long::sum);
         updateCapacity(animal);
         if (currentCapacityOfCell.get(animal.getName()) <=0 ){
-           // System.err.println(String.format("%s погиб, нет места"));
             animal.die();
         }
     }
@@ -56,7 +54,6 @@ public class Cell {
     public void addPlantInCell(Plant plant) {
         flora.add(plant);
         qtyOfGrass.merge(plant.getName(), 1L, Long::sum);
-       // creaturesInCell.merge(plant.getName(), 1L, Long::sum);
     }
 
     private synchronized void capacityOfCellInit(Creature creature) {
