@@ -20,7 +20,6 @@ public class SoulOfAnimals implements Runnable {
         animal = soul;
     }
 
-
     @Override
     public void run() {
         do {
@@ -28,15 +27,8 @@ public class SoulOfAnimals implements Runnable {
         } while (animal.getCurrentEnergy().get() != 0);
     }
 
-
     private Cell randomCell() {
         return animal.getAccessibleCells().get(ThreadLocalRandom.current().nextInt(0, animal.getAccessibleCells().size()));
-    }
-
-    public List<Animal> chooseForBreed() {
-        Cell cell = Island.instance.getCell(animal.getPosition());
-        return cell.getFauna().stream().filter(e -> e.getName().equals(animal.getName())
-                && !(e.equals(animal)) && e.getCurrentEnergy().get() > 0).toList();
     }
 
     public void act() {

@@ -133,7 +133,6 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     @Override
     public void leaveCell() {
             Cell cell =  Island.instance.getCell(this.getPosition());
-                cell.leavingOfAnimal(this);
         cell.getFauna().remove(this);
         cell.getCurrentCapacityOfCell().merge(getName(), 1, Integer::sum);
 
