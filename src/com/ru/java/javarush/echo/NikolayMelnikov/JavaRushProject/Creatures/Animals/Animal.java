@@ -1,6 +1,7 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.LuckNumber;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Breeding;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Eating;
@@ -131,9 +132,14 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
     @Override
     public void leaveCell() {
-        {
             Cell cell =  Island.instance.getCell(this.getPosition());
                 cell.leavingOfAnimal(this);
+        cell.getFauna().remove(this);
+        cell.getCurrentCapacityOfCell().merge(getName(), 1, Integer::sum);
+
+        if (cell.getCurrentCapacityOfCell().get(getName()) >= getClass().getAnnotation(MaxCapacity.class).value()) {
+            cell.getCurrentCapacityOfCell().remove(getName());
         }
+        cell.removeThis(this);
     }
 }
