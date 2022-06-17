@@ -69,7 +69,7 @@ public class Starter implements Runnable {
                                         .forEach(Creature::restoreEnergy))));
     }
     private void apocalypse() {
-        //Arrays.stream(Island.instance.getIsland()).forEach(e-> Arrays.stream(e).forEach(Cell::killAll));
+        Arrays.stream(Island.instance.getIsland()).forEach(e-> Arrays.stream(e).forEach(Cell::killAll));
 
         try {
             grassService.shutdown();

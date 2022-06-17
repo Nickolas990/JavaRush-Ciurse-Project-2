@@ -28,18 +28,16 @@ public abstract class HerbivoreAnimal extends Animal {
     public void eat() {
         Cell cell = Island.instance.getCell(this.getPosition());
         if (cell.getPlantsQty() > 0) {
-
-            List<Animal> list = cell.getFauna().stream().filter(e -> Luck.getLuck(this
+            List<Animal> accessibleAnimals = cell.getFauna().stream().filter(e -> Luck.getLuck(this
                             .getClass()
                             .getAnnotation(LuckNumber.class)
                             .value(),
                     e.getClass()
                             .getAnnotation(LuckNumber.class).value()) > 0)
                     .toList();
-            if (!list.isEmpty()) {
-                Animal victim = chooseVictim();
+            if (!accessibleAnimals.isEmpty()) {
+                Animal victim = chooseVictim(accessibleAnimals);
                 this.tryToEat(victim);
-
             } else  if (!cell.getFlora().isEmpty()){
                 Plant plant = cell.getFlora().stream().findAny().get();
                 plant.die();

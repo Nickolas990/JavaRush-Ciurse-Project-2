@@ -27,12 +27,7 @@ public class SoulOfAnimals implements Runnable {
         } while (animal.getCurrentEnergy().get() != 0);
     }
 
-    private Cell randomCell() {
-        return animal.getAccessibleCells().get(ThreadLocalRandom.current().nextInt(0, animal.getAccessibleCells().size()));
-    }
-
     public void act() {
-        Cell cell = Island.instance.getCell(animal.getPosition());
         if (animal.getCurrentHanger() < animal.getMaxHunger() * 0.5) {
             animal.eat();
         } else {

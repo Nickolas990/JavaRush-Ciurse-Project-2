@@ -1,10 +1,12 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.CarnivoreAnimals;
 
 
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.LuckNumber;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Luck;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Randomizer;
 
 import java.util.Comparator;
@@ -30,8 +32,16 @@ public abstract class CarnivoreAnimal extends Animal {
     @Override
     public void eat() {
         Cell cell = Island.instance.getCell(getPosition());
-        if (cell.getHerbivoreAnimalsQty() > 0) {
-            Animal victim = chooseVictim();
+        List<Animal> accessibleAnimals = cell.getFauna().stream()
+                .filter(e -> Luck.getLuck(this
+                                .getClass()
+                                .getAnnotation(LuckNumber.class)
+                                .value(),
+                        e.getClass()
+                                .getAnnotation(LuckNumber.class).value()) > 0)
+                .toList();
+        if (!accessibleAnimals.isEmpty()) {
+            Animal victim = chooseVictim(accessibleAnimals);
             tryToEat(victim);
         } else {
             moveTo(choosingDirectionForEat());

@@ -70,6 +70,8 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
             moveTo(choosingDirectionForBreed());
         }
     }
+    public abstract Cell choosingDirectionForEat();
+
     public Cell choosingDirectionForBreed() {
         return getAccessibleCells().stream()
                 .filter(e -> e.getCurrentCapacityOfCell()
@@ -84,20 +86,12 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
                 && !(e.equals(this)) && e.getCurrentEnergy().get() > 0).toList();
     }
 
-    public Animal chooseVictim() {
+    public Animal chooseVictim(List<Animal> accessibleAnimals) {
         Cell cell = Island.instance.getCell(this.getPosition());
-        List<Animal> accessibleAnimals = cell.getFauna().stream()
-                .filter(e -> Luck.getLuck(this
-                                .getClass()
-                                .getAnnotation(LuckNumber.class)
-                                .value(),
-                        e.getClass()
-                                .getAnnotation(LuckNumber.class).value()) > 0)
-                .toList();
+
         return accessibleAnimals.stream()
                 .max(Comparator.comparing(Creature::getWeight))
-                .orElse(accessibleAnimals.get(ThreadLocalRandom.current()
-                        .nextInt(0, accessibleAnimals.size())));
+                .orElse(accessibleAnimals.get(Randomizer.randomize(0, accessibleAnimals.size())));
     }
 
     public void tryToEat(Animal victim) {
@@ -140,5 +134,13 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
             cell.getCurrentCapacityOfCell().remove(getName());
         }
         cell.removeThis(this);
+    }
+
+    public void act() {
+        if (getCurrentHanger() < getMaxHunger() * 0.5) {
+            eat();
+        } else {
+            breed();
+        }
     }
 }

@@ -11,27 +11,24 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class ActingOfTheWorld implements Runnable{
-
+public class ActingOfTheWorld implements Runnable {
 
 
     public void run() {
-        ExecutorService service = Executors.newFixedThreadPool(15);
         System.out.println("Животные начинают движение...");
-        for (int i = 0; i < Island.instance.getXSize(); i++) {
-            for (int j = 0; j < Island.instance.getYSize(); j++) {
-                Cell cell = Island.instance.getCell(i, j);
+        for (int x = 0; x < Island.instance.getXSize(); x++) {
+            for (int y = 0; y < Island.instance.getYSize(); y++) {
+                Cell cell = Island.instance.getCell(x, y);
                 if (!cell.getFauna().isEmpty()) {
                     cell.getFauna().stream()
                             .filter(e -> e.getCurrentEnergy().get() > 0)
-                            .forEach(e -> service.submit(new SoulOfAnimals(e)));
+                            .forEach(e -> {
+                                while (e.getCurrentEnergy().get() > 0) {
+                                    e.act();
+                                }
+                            });
                 }
             }
-        }
-        try {
-            service.awaitTermination(30, TimeUnit.MILLISECONDS);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
         }
     }
 }
