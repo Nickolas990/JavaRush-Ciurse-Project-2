@@ -1,4 +1,4 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Executors;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services;
 
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;

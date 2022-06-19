@@ -37,8 +37,8 @@ public class StatisticsPrinter implements Printer {
                 });
             }
         }
-        quantityOfAnimals.entrySet().stream().forEach(System.out::println);
+        quantityOfAnimals.forEach((k, v) -> System.out.println(k + " : " + v ));
         System.out.println();
-        quantityOfPlants.entrySet().stream().forEach(System.out::println);
+        quantityOfPlants.forEach((k, v) -> System.out.println(k + " : " + v ));
     }
 }

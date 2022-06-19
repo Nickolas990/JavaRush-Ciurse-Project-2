@@ -98,10 +98,10 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         Integer luck = Luck.getLuck(this.getClass().getAnnotation(LuckNumber.class).value(), victim.getClass().getAnnotation(LuckNumber.class).value());
         if (ThreadLocalRandom.current().nextInt(0, 101) < luck) {
            // System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));
-            this.currentHanger += victim.getWeight();
+            this.setCurrentHanger(getCurrentHanger() + victim.getWeight());
             this.setStarve(3);
-            if (this.currentHanger > this.maxHunger) {
-                this.currentHanger = this.maxHunger;
+            if (this.getCurrentHanger() > this.getMaxHunger()) {
+                this.setCurrentHanger(getMaxHunger());
             }
             victim.die();
         }

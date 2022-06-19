@@ -1,9 +1,8 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Main;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Executors.ActingOfTheWorld;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.ActingOfTheWorld;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Executors.FaunaImmigrator;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.GrassSeeder;
 
@@ -15,19 +14,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Starter implements Runnable {
     private int day = 0;
     private StatisticsPrinter printer = new StatisticsPrinter();
     ExecutorService service = Executors.newSingleThreadExecutor();
     ExecutorService cachedService = Executors.newCachedThreadPool();
-    ScheduledExecutorService grassService = Executors.newScheduledThreadPool(1);
-    private ReentrantLock lock = new ReentrantLock();
+    ScheduledExecutorService grassService = Executors.newScheduledThreadPool(3);
+
 
 
     public void run() {
-        grassService.scheduleAtFixedRate(new GrassSeeder(), 0, 5, TimeUnit.MINUTES);
+        grassService.scheduleAtFixedRate(new GrassSeeder(), 0, 1, TimeUnit.MINUTES);
         Scanner scanner = new Scanner(System.in);
         new FaunaImmigrator().immigration();
         System.out.println("Животные и растения на своих местах. Начать симуляцию? Y/N");
@@ -41,7 +39,6 @@ public class Starter implements Runnable {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-
 
                 System.out.println(String.format("День %d окончен, состояние острова:" , ++day));
                 printer.print();
@@ -69,19 +66,12 @@ public class Starter implements Runnable {
                                         .forEach(Creature::restoreEnergy))));
     }
     private void apocalypse() {
-        Arrays.stream(Island.instance.getIsland()).forEach(e-> Arrays.stream(e).forEach(Cell::killAll));
+        //Arrays.stream(Island.instance.getIsland()).forEach(e-> Arrays.stream(e).forEach(Cell::killAll));
 
-        try {
-            grassService.shutdown();
-            grassService.awaitTermination(3, TimeUnit.SECONDS);
-            grassService.shutdownNow();
-            cachedService.shutdown();
-            cachedService.awaitTermination(3, TimeUnit.SECONDS);
-            cachedService.shutdownNow();
-            service.awaitTermination(3, TimeUnit.SECONDS);
-            service.shutdownNow();
-        } catch (InterruptedException e) {
-            System.err.println(e.getMessage());;
-        }
+        grassService.shutdown();
+        grassService.shutdownNow();
+        cachedService.shutdown();
+        cachedService.shutdownNow();
+        service.shutdownNow();
     }
 }

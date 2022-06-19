@@ -1,11 +1,7 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures;
 
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Mortal;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,8 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Setter
 @ToString
 public abstract class Creature implements Mortal {
-    Coordinates position;
-    boolean isAlive = true;
+    private Coordinates position;
+    protected boolean isAlive = true;
     protected String name;
     protected double weight;
     protected int maxEnergy;
