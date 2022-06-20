@@ -2,30 +2,35 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
 
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Settings;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.Settings;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class Island {
+    private static Island instance;
 
-    public static final Island instance = new Island();
+    static {
+        instance = new Island();
+    }
+    public static Island getInstance() {
+        return instance;
+    }
 
-    Cell[][] island;
-    private int xSize = Settings.XSize;
-    private int ySize = Settings.YSize;
+    private Settings settings = Settings.initialize();
 
+    public Settings getSettings() {
+        return settings;
+    }
+
+    private int xSize = settings.XSize;
+    private int ySize = settings.YSize;
+    Cell[][] island = new Cell[xSize][ySize];
 
 
     private Island() {
-        island = new Cell[xSize][ySize];
         initialiseIsland();
-
-    }
-
-    public static Island createNewStandardField() {
-        return instance;
     }
 
     public void addAnimal(Animal animal) {

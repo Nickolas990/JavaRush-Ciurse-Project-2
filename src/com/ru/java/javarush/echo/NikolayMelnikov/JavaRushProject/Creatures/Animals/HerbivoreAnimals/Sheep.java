@@ -10,20 +10,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @LuckNumber(10)
 public class Sheep extends HerbivoreAnimal {
 
+    {
+        setName("Овца");
+    }
+
     public Sheep(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Sheep(Coordinates position) {
         super(position);
-    }
-
-    {
-        name = "Овца";
-        weight = 70;
-        maxEnergy = 3;
-        maxHunger = 15;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        currentHanger = maxHunger;
+        init();
     }
 }

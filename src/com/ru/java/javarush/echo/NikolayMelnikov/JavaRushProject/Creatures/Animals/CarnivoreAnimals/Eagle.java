@@ -11,20 +11,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @LuckNumber(4)
 public class Eagle extends CarnivoreAnimal {
 
+    {
+        setName("Орел");
+    }
+
     public Eagle(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Eagle(Coordinates position) {
         super(position);
-    }
-
-    {
-        name = "Орел";
-        weight = 6;
-        maxEnergy = 3;
-        maxHunger = 1;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        currentHanger = maxHunger;
+        init();
     }
 }

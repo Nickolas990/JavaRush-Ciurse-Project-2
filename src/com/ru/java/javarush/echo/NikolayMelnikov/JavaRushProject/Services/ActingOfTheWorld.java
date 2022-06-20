@@ -3,25 +3,18 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.SoulOfAnimals;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Settings;
-
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class ActingOfTheWorld implements Runnable {
+    Island island = Island.getInstance();
 
-
+    //  ExecutorService service = Executors.newWorkStealingPool(5);
     public void run() {
         System.out.println("Животные начинают движение...");
-        for (int x = 0; x < Island.instance.getXSize(); x++) {
-            for (int y = 0; y < Island.instance.getYSize(); y++) {
-                Cell cell = Island.instance.getCell(x, y);
+        for (int x = 0; x < island.getXSize(); x++) {
+            for (int y = 0; y < island.getYSize(); y++) {
+                Cell cell = island.getCell(x, y);
                 if (!cell.getFauna().isEmpty()) {
                     cell.getFauna().stream()
-                            .filter(e -> e.getCurrentEnergy().get() > 0)
                             .forEach(e -> {
                                 while (e.getCurrentEnergy().get() > 0) {
                                     e.act();
@@ -30,5 +23,6 @@ public class ActingOfTheWorld implements Runnable {
                 }
             }
         }
+        System.out.println("День окончен!");
     }
 }

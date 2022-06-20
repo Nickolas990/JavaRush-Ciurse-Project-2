@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 
 public class FaunaImmigrator {
@@ -37,6 +38,13 @@ public class FaunaImmigrator {
         listOfTasks.stream().forEach(e -> service.submit(e));
 
         service.shutdown();
+        try {
+            service.awaitTermination(10, TimeUnit.SECONDS);
+            System.out.println("Животные размещены");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
 
         //Island.instance.getIslandInfo();
     }

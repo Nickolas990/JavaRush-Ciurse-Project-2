@@ -7,8 +7,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CoordinatesCreator {
     public static Coordinates generateCoordinates() {
-        int generatedX = ThreadLocalRandom.current().nextInt(0, Island.instance.getXSize());
-        int generatedY = ThreadLocalRandom.current().nextInt(0, Island.instance.getYSize());
+        int generatedX = ThreadLocalRandom.current().nextInt(0, Island.getInstance().getXSize());
+        int generatedY = ThreadLocalRandom.current().nextInt(0, Island.getInstance().getYSize());
         return new Coordinates(generatedX, generatedY);
     }
 }

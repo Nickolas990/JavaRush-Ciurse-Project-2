@@ -11,19 +11,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @LuckNumber(1)
 public class Boa extends CarnivoreAnimal{
 
+    {
+        setName("Удав");
+    }
+
     public Boa(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Boa(Coordinates position) {
         super(position);
-    }
-    {
-        name = "Удав";
-        weight = 15;
-        maxEnergy = 1;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        maxHunger = 3;
-        currentHanger = maxEnergy;
+        init();
     }
 }

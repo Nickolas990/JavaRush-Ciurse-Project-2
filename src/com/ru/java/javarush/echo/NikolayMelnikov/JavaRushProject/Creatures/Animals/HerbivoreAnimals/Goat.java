@@ -9,21 +9,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @MaxCapacity(140)
 @LuckNumber(9)
 public class Goat extends HerbivoreAnimal {
+    {
+        setName("Коза");
+    }
 
     public Goat(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Goat(Coordinates position) {
         super(position);
-    }
-
-    {
-        name = "Коза";
-        weight = 60;
-        maxHunger = 10;
-        maxEnergy = 3;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        currentHanger = maxHunger;
+        init();
     }
 }

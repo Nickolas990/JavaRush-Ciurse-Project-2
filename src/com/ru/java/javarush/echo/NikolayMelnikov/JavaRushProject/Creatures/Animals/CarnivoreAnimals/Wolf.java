@@ -9,21 +9,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 @MaxCapacity(30)
 @LuckNumber(0)
 public class Wolf extends CarnivoreAnimal {
+    {
+        setName("Волк");
+    }
 
     public Wolf(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Wolf(Coordinates position) {
         super(position);
+        init();
     }
 
-    {
-        name = "Волк";
-        weight = 50;
-        maxHunger = 8;
-        maxEnergy = 3;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        currentHanger = maxHunger;
-    }
 }

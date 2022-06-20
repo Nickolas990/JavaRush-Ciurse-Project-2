@@ -5,7 +5,7 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Anima
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.CoordinatesCreator;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Settings;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.Settings;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,8 +13,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class AnimalDeployer implements Runnable {
 
     Class creatureClass;
-    int islandLength = Settings.XSize;
-    int islandWidth = Settings.YSize;
+    int islandLength = Island.getInstance().getYSize();
+    int islandWidth = Island.getInstance().getYSize();
 
     public AnimalDeployer(Class<?> clazz) {
         this.creatureClass = clazz;
@@ -25,9 +25,9 @@ public class AnimalDeployer implements Runnable {
 
         try {
             MaxCapacity capacityAnnotation = (MaxCapacity) creatureClass.getAnnotation(MaxCapacity.class);
-            int capacity = ThreadLocalRandom.current().nextInt(0, capacityAnnotation.value() * islandLength*islandWidth);
-            for (int i = 0; i <= capacity; i++) {
-                Island.instance.addAnimal((Animal) creatureClass.getConstructor(Coordinates.class)
+            int quantity = ThreadLocalRandom.current().nextInt(0, capacityAnnotation.value() * islandLength*islandWidth);
+            for (int i = 0; i <= quantity; i++) {
+                Island.getInstance().addAnimal((Animal) creatureClass.getConstructor(Coordinates.class)
                         .newInstance(CoordinatesCreator.generateCoordinates()));
             }
         } catch (InstantiationException e) {

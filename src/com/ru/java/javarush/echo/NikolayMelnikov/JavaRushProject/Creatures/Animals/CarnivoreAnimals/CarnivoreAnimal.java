@@ -31,7 +31,7 @@ public abstract class CarnivoreAnimal extends Animal {
     }
     @Override
     public void eat() {
-        Cell cell = Island.instance.getCell(getPosition());
+        Cell cell = Island.getInstance().getCell(getPosition());
         List<Animal> accessibleAnimals = cell.getFauna().stream()
                 .filter(e -> Luck.getLuck(this
                                 .getClass()

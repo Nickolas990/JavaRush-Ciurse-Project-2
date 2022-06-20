@@ -9,21 +9,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @MaxCapacity(200)
 @LuckNumber(13)
 public class Duck extends HerbivoreAnimal {
+    {
+        setName("Утка");
+    }
 
     public Duck(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Duck(Coordinates position) {
         super(position);
-    }
-
-    {
-        name = "Утка";
-        weight = 1;
-        maxHunger = 0.15;
-        maxEnergy = 4;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        currentHanger = maxHunger;
+        init();
     }
 }

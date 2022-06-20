@@ -13,25 +13,24 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class SoulOfAnimals implements Runnable {
-    Animal animal;
+    Cell cell;
 
 
-    public SoulOfAnimals(Animal soul) {
-        animal = soul;
+    public SoulOfAnimals(Cell cell) {
+        this.cell = cell;
     }
 
     @Override
     public void run() {
-        do {
-            act();
-        } while (animal.getCurrentEnergy().get() != 0);
-    }
-
-    public void act() {
-        if (animal.getCurrentHanger() < animal.getMaxHunger() * 0.5) {
-            animal.eat();
-        } else {
-            animal.breed();
-        }
+        cell.getFauna().stream().forEach(animal -> {
+            animal.getLogList().clear();
+            do {
+                if (animal.getCurrentHanger() < animal.getMaxHunger() * 0.5) {
+                    animal.eat();
+                } else {
+                    animal.breed();
+                }
+            } while (animal.getCurrentEnergy().get() > 0);
+        });
     }
 }

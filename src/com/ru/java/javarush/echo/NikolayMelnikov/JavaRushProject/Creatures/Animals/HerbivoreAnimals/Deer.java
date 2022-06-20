@@ -10,21 +10,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 @LuckNumber(6)
 public class Deer extends HerbivoreAnimal {
 
+    {
+        setName("Олень");
+    }
+
     public Deer(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Deer(Coordinates position) {
         super(position);
+        init();
     }
 
-    {
-        name = "Олень";
-        weight = 300;
-        maxHunger = 4;
-        maxEnergy = 50;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        currentHanger = maxHunger;
-
-    }
 }

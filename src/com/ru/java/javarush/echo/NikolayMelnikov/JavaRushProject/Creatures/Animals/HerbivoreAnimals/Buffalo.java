@@ -9,23 +9,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 @MaxCapacity(10)
 @LuckNumber(12)
 public class Buffalo extends HerbivoreAnimal {
+    {
+        setName("Буйвол");
+    }
 
 
     public Buffalo(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Buffalo(Coordinates position) {
         super(position);
-    }
-
-    {
-        name = "Буйвол";
-        weight = 700;
-        maxEnergy = 3;
-        maxHunger = 100;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        currentHanger = maxHunger;
+        init();
     }
 
 }

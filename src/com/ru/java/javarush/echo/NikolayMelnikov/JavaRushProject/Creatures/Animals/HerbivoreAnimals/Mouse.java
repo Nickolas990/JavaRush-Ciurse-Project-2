@@ -10,22 +10,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 @MaxCapacity(500)
 @LuckNumber(8)
 public class Mouse extends HerbivoreAnimal {
+    {
+        setName("Мышь");
+    }
 
 
     public Mouse(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Mouse(Coordinates position) {
         super(position);
-    }
-
-    {
-        name = "Мышь";
-        weight = 0.05;
-        maxEnergy = 1;
-        maxHunger = 0.01;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        currentHanger = maxHunger;
+        init();
     }
 }

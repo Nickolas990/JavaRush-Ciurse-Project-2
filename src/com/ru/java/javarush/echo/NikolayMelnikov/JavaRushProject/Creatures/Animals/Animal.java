@@ -10,6 +10,8 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creat
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.AnimalCharacteristics;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.Settings;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Luck;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Randomizer;
 import lombok.Getter;
@@ -27,8 +29,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class Animal extends Creature implements Moving, Eating, Breeding {
 
 
-    protected int starve = 3;
+    protected int starve = Island.getInstance().getSettings().getStarve();
     protected List<Cell> accessibleCells = new ArrayList<>();
+    public List<String> logList = new ArrayList<>();
+    AnimalCharacteristics[] animalCharacteristics = Settings.initialize().getAnimalCharacteristics();
 
 
     public Animal(Coordinates position) {
@@ -43,6 +47,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     @Override
     public void moveTo(Cell newCell) {
         reduceEnergy();
+        logList.add("Начинает движение в клетку " + newCell.getCoordinates());
         if (getCurrentEnergy().get() < 0) {
             throw new RuntimeException("Нет доступных очков хода");
         }
@@ -50,16 +55,18 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         newCell.addAnimalInCell(this);
         setPosition(newCell.getCoordinates());
         initializeAccessibleCells();
+        logList.add("Закончил перемещение");
     }
 
 
     @Override
     public void breed() {
+        logList.add("Начат процесс спаривания");
         List<Animal> breeders = chooseForBreed();
         if (!breeders.isEmpty()) {
             Animal animal = breeders.get(Randomizer.randomize(0, breeders.size()));
             try {
-                Island.instance.addAnimal(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
+                Island.getInstance().getCell(animal.getPosition()).addAnimalInCell(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
                 System.out.println(e.getMessage());
                 throw new RuntimeException(e);
@@ -69,6 +76,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         } else {
             moveTo(choosingDirectionForBreed());
         }
+        logList.add("Процесс спаривания завершен");
     }
     public abstract Cell choosingDirectionForEat();
 
@@ -81,13 +89,12 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
     }
     public List<Animal> chooseForBreed() {
-        Cell cell = Island.instance.getCell(getPosition());
+        Cell cell = Island.getInstance().getCell(getPosition());
         return cell.getFauna().stream().filter(e -> e.getName().equals(getName())
                 && !(e.equals(this)) && e.getCurrentEnergy().get() > 0).toList();
     }
 
     public Animal chooseVictim(List<Animal> accessibleAnimals) {
-        Cell cell = Island.instance.getCell(this.getPosition());
 
         return accessibleAnimals.stream()
                 .max(Comparator.comparing(Creature::getWeight))
@@ -111,22 +118,22 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         Coordinates coordinates = this.getPosition();
 
         if (coordinates.getX() - 1 >= 0) {
-            accessibleCells.add(Island.instance.getCell(coordinates.getX() - 1, coordinates.getY()));
+            accessibleCells.add(Island.getInstance().getCell(coordinates.getX() - 1, coordinates.getY()));
         }
         if (coordinates.getY() - 1 >= 0) {
-            accessibleCells.add(Island.instance.getCell(coordinates.getX(), coordinates.getY() - 1));
+            accessibleCells.add(Island.getInstance().getCell(coordinates.getX(), coordinates.getY() - 1));
         }
-        if ((coordinates.getX() + 1) < Island.instance.getXSize()) {
-            accessibleCells.add(Island.instance.getCell(coordinates.getX() + 1, coordinates.getY()));
+        if ((coordinates.getX() + 1) < Island.getInstance().getXSize()) {
+            accessibleCells.add(Island.getInstance().getCell(coordinates.getX() + 1, coordinates.getY()));
         }
-        if (coordinates.getY() + 1 < Island.instance.getYSize()) {
-            accessibleCells.add(Island.instance.getCell(coordinates.getX(), coordinates.getY() + 1));
+        if (coordinates.getY() + 1 < Island.getInstance().getYSize()) {
+            accessibleCells.add(Island.getInstance().getCell(coordinates.getX(), coordinates.getY() + 1));
         }
     }
 
     @Override
     public void leaveCell() {
-            Cell cell =  Island.instance.getCell(this.getPosition());
+            Cell cell =  Island.getInstance().getCell(this.getPosition());
         cell.getFauna().remove(this);
         cell.getCurrentCapacityOfCell().merge(getName(), 1, Integer::sum);
 
@@ -138,9 +145,26 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
     public void act() {
         if (getCurrentHanger() < getMaxHunger() * 0.5) {
+            logList.add("Процесс поедания начат");
             eat();
+            logList.add("Процесс поедания завершен");
         } else {
             breed();
         }
+    }
+
+    public void init() {
+        for (AnimalCharacteristics animal : animalCharacteristics ) {
+            if (animal.getName().equals(this.getName())) {
+                weight = animal.getWeight();
+                maxEnergy = animal.getMaxEnergy();
+
+                maxHunger = animal.getMaxHunger();
+                currentEnergy = new AtomicInteger(animal.getCurrentEnergy());
+
+                currentHanger = animal.getCurrentHunger();
+            }
+        }
+
     }
 }
