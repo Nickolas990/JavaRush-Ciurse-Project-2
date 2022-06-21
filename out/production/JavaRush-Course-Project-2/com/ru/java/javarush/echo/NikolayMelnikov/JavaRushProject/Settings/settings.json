@@ -1,0 +1,127 @@
+{
+  "XSize" : "100",
+  "YSize" : "20",
+  "starve" : 3,
+  "animalCharacteristics" : [
+    {
+      "name" : "Медведь",
+      "weight" : 500.0,
+      "maxEnergy" : 2,
+      "currentEnergy" : 0,
+      "maxHunger" : 80.0,
+      "currentHunger" : 80
+    },
+    {
+      "name" : "Удав",
+      "weight" : 15.0,
+      "maxEnergy" : 1,
+      "currentEnergy" : 0,
+      "maxHunger" : 3.0,
+      "currentHunger" : 3
+    },
+    {
+      "name" : "Орел",
+      "weight" : 6.0,
+      "maxEnergy" : 3,
+      "currentEnergy" : 0,
+      "maxHunger" : 1.0,
+      "currentHunger" : 1
+    },
+    {
+      "name" : "Лиса",
+      "weight" : 8.0,
+      "maxEnergy" : 2,
+      "currentEnergy" : 0,
+      "maxHunger" : 2.0,
+      "currentHunger" : 2
+    },
+    {
+      "name" : "Волк",
+      "weight" : 50.0,
+      "maxEnergy" : 3,
+      "currentEnergy" : 0,
+      "maxHunger" : 8.0,
+      "currentHunger" : 8
+    },
+    {
+      "name" : "Кабан",
+      "weight" : 400.0,
+      "maxEnergy" : 2,
+      "currentEnergy" : 0,
+      "maxHunger" : 50.0,
+      "currentHunger" : 50
+    },
+    {
+      "name" : "Буйвол",
+      "weight" : 700.0,
+      "maxEnergy" : 3,
+      "currentEnergy" : 0,
+      "maxHunger" : 100.0,
+      "currentHunger" : 100
+    },
+    {
+      "name" : "Гусеница",
+      "weight" : 0.01,
+      "maxEnergy" : 0,
+      "currentEnergy" : 0,
+      "maxHunger" : 0.0,
+      "currentHunger" : 0
+    },
+    {
+      "name" : "Олень",
+      "weight" : 300.0,
+      "maxEnergy" : 4,
+      "currentEnergy" : 0,
+      "maxHunger" : 50.0,
+      "currentHunger" : 50
+    },
+    {
+      "name" : "Утка",
+      "weight" : 1.0,
+      "maxEnergy" : 4,
+      "currentEnergy" : 0,
+      "maxHunger" : 0.15,
+      "currentHunger" : 0.15
+    },
+    {
+      "name" : "Коза",
+      "weight" : 60.0,
+      "maxEnergy" : 3,
+      "currentEnergy" : 0,
+      "maxHunger" : 10.0,
+      "currentHunger" : 10
+    },
+    {
+      "name" : "Лошадь",
+      "weight" : 400.0,
+      "maxEnergy" : 4,
+      "currentEnergy" : 0,
+      "maxHunger" : 60.0,
+      "currentHunger" : 60
+    },
+    {
+      "name" : "Мышь",
+      "weight" : 0.05,
+      "maxEnergy" : 1,
+      "currentEnergy" : 0,
+      "maxHunger" : 0.01,
+      "currentHunger" : 0.01
+    },
+    {
+      "name" : "Кролик",
+      "weight" : 2.0,
+      "maxEnergy" : 2,
+      "currentEnergy" : 0,
+      "maxHunger" : 0.45,
+      "currentHunger" : 0.45
+    },
+    {
+      "name" : "Овца",
+      "weight" : 70.0,
+      "maxEnergy" : 3,
+      "currentEnergy" : 0,
+      "maxHunger" : 15.0,
+      "currentHunger" : 15
+    }
+  ]
+}
