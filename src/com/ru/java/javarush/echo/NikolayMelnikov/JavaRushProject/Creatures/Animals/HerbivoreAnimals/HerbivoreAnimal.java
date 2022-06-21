@@ -26,7 +26,6 @@ public abstract class HerbivoreAnimal extends Animal {
 
     @Override
     public void eat() {
-        Cell cell = Island.getInstance().getCell(this.getPosition());
         if (cell.getPlantsQty() > 0) {
             List<Animal> accessibleAnimals = cell.getFauna().stream()
                     .filter(e -> this.getLuck().get(e.getName()) > 0)

@@ -1,7 +1,9 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Mortal;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -23,6 +25,7 @@ public abstract class Creature implements Mortal {
     protected double currentHanger;
     protected int starve;
     protected Map<String, Double> luck;
+    protected Cell cell;
 
 
     protected static int maxCapacityInCell;
@@ -30,11 +33,13 @@ public abstract class Creature implements Mortal {
     protected Creature (int x, int y) {
         position.setX(x);
         position.setY(y);
+        cell = Island.getInstance().getCell(x, y);
 
     }
 
     public Creature(Coordinates position) {
         this.position = position;
+        cell = Island.getInstance().getCell(position);
 
     }
 

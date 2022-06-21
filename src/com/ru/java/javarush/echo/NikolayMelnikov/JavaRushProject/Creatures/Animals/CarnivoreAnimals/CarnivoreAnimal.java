@@ -1,12 +1,7 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.CarnivoreAnimals;
-
-
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.LuckNumber;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Luck;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Randomizer;
 
 import java.util.Comparator;
@@ -31,7 +26,6 @@ public abstract class CarnivoreAnimal extends Animal {
     }
     @Override
     public void eat() {
-        Cell cell = Island.getInstance().getCell(getPosition());
         List<Animal> accessibleAnimals = cell.getFauna().stream()
                 .filter(e -> this.getLuck().get(e.getName()) > 0)
                 .toList();
