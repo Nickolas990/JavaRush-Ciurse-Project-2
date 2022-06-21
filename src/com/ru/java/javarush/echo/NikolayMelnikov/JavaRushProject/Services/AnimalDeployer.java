@@ -30,13 +30,7 @@ public class AnimalDeployer implements Runnable {
                         .newInstance(CoordinatesCreator.generateCoordinates());
                 animal.getThisPosition(animal.getPosition());
             }
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

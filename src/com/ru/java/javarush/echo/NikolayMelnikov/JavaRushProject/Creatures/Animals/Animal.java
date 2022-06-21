@@ -106,7 +106,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         if (ThreadLocalRandom.current().nextInt(0, 100) < luck) {
             // System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));
             this.setCurrentHanger(getCurrentHanger() + victim.getWeight());
-            this.setStarve(3);
+            this.setStarve(Island.getInstance().getSettings().getStarve());
             if (this.getCurrentHanger() > this.getMaxHunger()) {
                 this.setCurrentHanger(getMaxHunger());
             }

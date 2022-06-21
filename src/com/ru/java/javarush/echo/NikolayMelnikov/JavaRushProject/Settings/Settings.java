@@ -29,7 +29,7 @@ public class Settings {
      try {
          settings = objectMapper.readValue(Files.newBufferedReader(Path.of("src/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Settings/settings.json")), Settings.class);
      } catch (IOException e) {
-         throw new RuntimeException(e);
+         throw new RuntimeException("Возникла проблема с файлом settings.json. Проверьте, что он находится в каталоге settings и соответствует классу Settings()");
      }
      return settings;
  }
