@@ -11,6 +11,7 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.AnimalCharacteristics;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.LuckTable;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.Settings;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Luck;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Randomizer;
@@ -37,11 +38,9 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
     public Animal(Coordinates position) {
         super(position);
-        this.initializeAccessibleCells();
     }
     public Animal (int x, int y) {
         super(new Coordinates(x, y));
-        initializeAccessibleCells();
     }
 
     @Override
@@ -54,7 +53,6 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         leaveCell();
         newCell.addAnimalInCell(this);
         setPosition(newCell.getCoordinates());
-        initializeAccessibleCells();
         logList.add("Закончил перемещение");
     }
 
@@ -74,6 +72,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
             animal.reduceEnergy();
             this.reduceEnergy();
         } else {
+            initializeAccessibleCells();
             moveTo(choosingDirectionForBreed());
         }
         logList.add("Процесс спаривания завершен");
@@ -91,7 +90,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     public List<Animal> chooseForBreed() {
         Cell cell = Island.getInstance().getCell(getPosition());
         return cell.getFauna().stream().filter(e -> e.getName().equals(getName())
-                && !(e.equals(this)) && e.getCurrentEnergy().get() > 0).toList();
+                && !(e.equals(this)) && e.getCurrentEnergy().get() > 0 && e.currentHanger > e.maxHunger/2).toList();
     }
 
     public Animal chooseVictim(List<Animal> accessibleAnimals) {
@@ -102,8 +101,8 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     }
 
     public void tryToEat(Animal victim) {
-        Integer luck = Luck.getLuck(this.getClass().getAnnotation(LuckNumber.class).value(), victim.getClass().getAnnotation(LuckNumber.class).value());
-        if (ThreadLocalRandom.current().nextInt(0, 101) < luck) {
+        Double luck = getLuck().get(victim.getName());
+        if (ThreadLocalRandom.current().nextInt(0, 100) < luck) {
            // System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));
             this.setCurrentHanger(getCurrentHanger() + victim.getWeight());
             this.setStarve(3);
@@ -113,7 +112,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
             victim.die();
         }
     }
-    private void initializeAccessibleCells() {
+    protected void initializeAccessibleCells() {
         accessibleCells.clear();
         Coordinates coordinates = this.getPosition();
 
@@ -155,16 +154,19 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
     public void init() {
         for (AnimalCharacteristics animal : animalCharacteristics ) {
-            if (animal.getName().equals(this.getName())) {
+            if (animal.getName().equals(getName())) {
                 weight = animal.getWeight();
                 maxEnergy = animal.getMaxEnergy();
-
                 maxHunger = animal.getMaxHunger();
-                currentEnergy = new AtomicInteger(animal.getCurrentEnergy());
-
+                currentEnergy.set(animal.getCurrentEnergy());
                 currentHanger = animal.getCurrentHunger();
+                luck = LuckTable.getLuck().get(animal.getName());
             }
         }
-
     }
+
+//    @Override
+//    public void eat() {
+//
+//    }
 }

@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Settings {
  public int XSize;
  public int YSize;
+
  private int starve;
 
  private AnimalCharacteristics[] animalCharacteristics;

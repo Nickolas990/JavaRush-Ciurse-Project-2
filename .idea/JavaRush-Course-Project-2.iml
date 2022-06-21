@@ -13,5 +13,6 @@
     <orderEntry type="library" name="jackson-annotations-2.13.3" level="project" />
     <orderEntry type="library" name="jackson-core-2.13.3" level="project" />
     <orderEntry type="library" name="jackson-core-asl-1.9.13" level="project" />
+    <orderEntry type="library" name="gson-2.9.0" level="project" />
   </component>
 </module>

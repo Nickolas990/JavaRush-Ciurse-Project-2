@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
@@ -17,10 +18,11 @@ public abstract class Creature implements Mortal {
     protected String name;
     protected double weight;
     protected int maxEnergy;
-    protected AtomicInteger currentEnergy;
+    protected AtomicInteger currentEnergy = new AtomicInteger(0);
     protected double maxHunger;
     protected double currentHanger;
     protected int starve;
+    protected Map<String, Double> luck;
 
 
     protected static int maxCapacityInCell;
