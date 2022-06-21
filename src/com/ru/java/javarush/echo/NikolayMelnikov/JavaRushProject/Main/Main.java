@@ -5,7 +5,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-       Thread newThread = new Thread(new Starter());
-       newThread.start();
+//        new Runner().startSimulation();
+
+        String dir = System.getProperty("user.dir");
+        System.out.println(dir);
+
+        //       Thread newThread = new Thread(new Starter());
+//       newThread.start();
     }
 }

@@ -17,7 +17,7 @@ public class GrassSeeder implements Runnable {
             for (int y = 0; y < Island.getInstance().getYSize(); y++) {
                 Cell cell = Island.getInstance().getCell(x, y);
                 if (cell.getFlora().size() < 200) {
-                    int targetQuantityOfGrass = ThreadLocalRandom.current().nextInt(0, 201);
+                    int targetQuantityOfGrass = ThreadLocalRandom.current().nextInt(0, 200);
                     if (cell.getFlora().size() < targetQuantityOfGrass) {
                         for (int k = 0; k < targetQuantityOfGrass; k++) {
                             cell.addPlantInCell(new Plant(cell.getCoordinates()));

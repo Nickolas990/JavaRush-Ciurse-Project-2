@@ -3,13 +3,8 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Anim
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.LuckNumber;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.AnimalCharacteristics;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.Settings;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 @Setter

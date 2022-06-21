@@ -1,8 +1,6 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals;
 
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.LuckNumber;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Breeding;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Eating;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Interfaces.Moving;
@@ -13,7 +11,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.AnimalCharacteristics;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.LuckTable;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.Settings;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Luck;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Randomizer;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 @Setter
@@ -39,7 +35,8 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     public Animal(Coordinates position) {
         super(position);
     }
-    public Animal (int x, int y) {
+
+    public Animal(int x, int y) {
         super(new Coordinates(x, y));
     }
 
@@ -64,8 +61,10 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         if (!breeders.isEmpty()) {
             Animal animal = breeders.get(Randomizer.randomize(0, breeders.size()));
             try {
-                Island.getInstance().getCell(animal.getPosition()).addAnimalInCell(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+               Animal newAnimal =  this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition());
+               newAnimal.getThisPosition(animal.getPosition());
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
+                     InstantiationException e) {
                 System.out.println(e.getMessage());
                 throw new RuntimeException(e);
             }
@@ -77,6 +76,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         }
         logList.add("Процесс спаривания завершен");
     }
+
     public abstract Cell choosingDirectionForEat();
 
     public Cell choosingDirectionForBreed() {
@@ -87,10 +87,11 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
                 .orElse(accessibleCells.get(Randomizer.randomize(0, accessibleCells.size())));
 
     }
+
     public List<Animal> chooseForBreed() {
         Cell cell = Island.getInstance().getCell(getPosition());
         return cell.getFauna().stream().filter(e -> e.getName().equals(getName())
-                && !(e.equals(this)) && e.getCurrentEnergy().get() > 0 && e.currentHanger > e.maxHunger/2).toList();
+                && !(e.equals(this)) && e.getCurrentEnergy().get() > 0 && e.currentHanger > e.maxHunger / 2).toList();
     }
 
     public Animal chooseVictim(List<Animal> accessibleAnimals) {
@@ -103,7 +104,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     public void tryToEat(Animal victim) {
         Double luck = getLuck().get(victim.getName());
         if (ThreadLocalRandom.current().nextInt(0, 100) < luck) {
-           // System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));
+            // System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));
             this.setCurrentHanger(getCurrentHanger() + victim.getWeight());
             this.setStarve(3);
             if (this.getCurrentHanger() > this.getMaxHunger()) {
@@ -112,6 +113,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
             victim.die();
         }
     }
+
     protected void initializeAccessibleCells() {
         accessibleCells.clear();
         Coordinates coordinates = this.getPosition();
@@ -132,7 +134,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
 
     @Override
     public void leaveCell() {
-            Cell cell =  Island.getInstance().getCell(this.getPosition());
+        Cell cell = Island.getInstance().getCell(this.getPosition());
         cell.getFauna().remove(this);
         cell.getCurrentCapacityOfCell().merge(getName(), 1, Integer::sum);
 
@@ -142,18 +144,8 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
         cell.removeThis(this);
     }
 
-    public void act() {
-        if (getCurrentHanger() < getMaxHunger() * 0.5) {
-            logList.add("Процесс поедания начат");
-            eat();
-            logList.add("Процесс поедания завершен");
-        } else {
-            breed();
-        }
-    }
-
     public void init() {
-        for (AnimalCharacteristics animal : animalCharacteristics ) {
+        for (AnimalCharacteristics animal : animalCharacteristics) {
             if (animal.getName().equals(getName())) {
                 weight = animal.getWeight();
                 maxEnergy = animal.getMaxEnergy();
@@ -161,12 +153,13 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
                 currentEnergy.set(animal.getCurrentEnergy());
                 currentHanger = animal.getCurrentHunger();
                 luck = LuckTable.getLuck().get(animal.getName());
+                maxCapacity = animal.getMaxCapacity();
             }
         }
     }
 
-//    @Override
-//    public void eat() {
-//
-//    }
+    public void getThisPosition(Coordinates coordinates) {
+        setCell(Island.getInstance().getCell(coordinates));
+        cell.addAnimalInCell(this);
+    }
 }

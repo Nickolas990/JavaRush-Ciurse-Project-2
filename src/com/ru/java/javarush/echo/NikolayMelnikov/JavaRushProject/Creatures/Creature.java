@@ -24,6 +24,7 @@ public abstract class Creature implements Mortal {
     protected double maxHunger;
     protected double currentHanger;
     protected int starve;
+    protected int maxCapacity;
     protected Map<String, Double> luck;
     protected Cell cell;
 
@@ -78,13 +79,15 @@ public abstract class Creature implements Mortal {
 
 
     public void restoreEnergy() {
-        currentEnergy.set(maxEnergy);
-        currentHanger -= maxEnergy;
-        if (currentHanger < 0) {
-            currentHanger = 0;
-            starve--;
-            if (starve < 0) {
-                die();
+        if (currentEnergy.get() <= 0) {
+            currentEnergy.set(maxEnergy);
+            currentHanger -= maxEnergy;
+            if (currentHanger < 0) {
+                currentHanger = 0;
+                starve--;
+                if (starve < 0) {
+                    die();
+                }
             }
         }
     }

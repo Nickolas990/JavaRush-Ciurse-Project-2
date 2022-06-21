@@ -8,16 +8,16 @@ import lombok.ToString;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 @Setter
 @ToString
 public class Settings {
- public int XSize;
- public int YSize;
+ public int wight;
+ public int height;
 
  private int starve;
+ private int plantsNutritionalValue;
 
  private AnimalCharacteristics[] animalCharacteristics;
 

@@ -33,19 +33,16 @@ public class FaunaImmigrator {
         listOfTasks.add(new AnimalDeployer(Rabbit.class));
         listOfTasks.add(new AnimalDeployer(Sheep.class));
 
-        ExecutorService service = Executors.newFixedThreadPool(5);
+        ExecutorService service = Executors.newCachedThreadPool();
 
-        listOfTasks.stream().forEach(e -> service.submit(e));
+        listOfTasks.stream().forEach(e ->service.submit(e));
 
         service.shutdown();
         try {
-            service.awaitTermination(3, TimeUnit.SECONDS);
-            System.out.println("Животные размещены");
+            service.awaitTermination(10, TimeUnit.SECONDS);
+                System.out.println("Животные размещены");
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
-
-
-        //Island.instance.getIslandInfo();
     }
 }

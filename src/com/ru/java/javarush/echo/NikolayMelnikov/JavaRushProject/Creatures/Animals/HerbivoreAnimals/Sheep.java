@@ -4,8 +4,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.Luc
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 @MaxCapacity(140)
 @LuckNumber(10)
 public class Sheep extends HerbivoreAnimal {

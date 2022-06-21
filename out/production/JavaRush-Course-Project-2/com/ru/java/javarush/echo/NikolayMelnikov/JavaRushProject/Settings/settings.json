@@ -1,6 +1,7 @@
 {
   "XSize" : "100",
   "YSize" : "20",
+  "plantsNutritionalValue" : 10,
   "starve" : 3,
   "animalCharacteristics" : [
     {
@@ -9,7 +10,8 @@
       "maxEnergy" : 2,
       "currentEnergy" : 0,
       "maxHunger" : 80.0,
-      "currentHunger" : 80
+      "currentHunger" : 80,
+      "maxCapacity" : 5
     },
     {
       "name" : "Удав",
@@ -17,7 +19,8 @@
       "maxEnergy" : 1,
       "currentEnergy" : 0,
       "maxHunger" : 3.0,
-      "currentHunger" : 3
+      "currentHunger" : 3,
+      "maxCapacity" : 30
     },
     {
       "name" : "Орел",
@@ -25,7 +28,8 @@
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 1.0,
-      "currentHunger" : 1
+      "currentHunger" : 1,
+      "maxCapacity" : 20
     },
     {
       "name" : "Лиса",
@@ -33,7 +37,8 @@
       "maxEnergy" : 2,
       "currentEnergy" : 0,
       "maxHunger" : 2.0,
-      "currentHunger" : 2
+      "currentHunger" : 2,
+      "maxCapacity" : 30
     },
     {
       "name" : "Волк",
@@ -41,7 +46,8 @@
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 8.0,
-      "currentHunger" : 8
+      "currentHunger" : 8,
+      "maxCapacity" : 30
     },
     {
       "name" : "Кабан",
@@ -49,7 +55,8 @@
       "maxEnergy" : 2,
       "currentEnergy" : 0,
       "maxHunger" : 50.0,
-      "currentHunger" : 50
+      "currentHunger" : 50,
+      "maxCapacity" : 50
     },
     {
       "name" : "Буйвол",
@@ -57,7 +64,8 @@
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 100.0,
-      "currentHunger" : 100
+      "currentHunger" : 100,
+      "maxCapacity" : 10
     },
     {
       "name" : "Гусеница",
@@ -65,7 +73,8 @@
       "maxEnergy" : 0,
       "currentEnergy" : 0,
       "maxHunger" : 0.0,
-      "currentHunger" : 0
+      "currentHunger" : 0,
+      "maxCapacity" : 1000
     },
     {
       "name" : "Олень",
@@ -73,7 +82,8 @@
       "maxEnergy" : 4,
       "currentEnergy" : 0,
       "maxHunger" : 50.0,
-      "currentHunger" : 50
+      "currentHunger" : 50,
+      "maxCapacity" : 20
     },
     {
       "name" : "Утка",
@@ -81,7 +91,8 @@
       "maxEnergy" : 4,
       "currentEnergy" : 0,
       "maxHunger" : 0.15,
-      "currentHunger" : 0.15
+      "currentHunger" : 0.15,
+      "maxCapacity" : 200
     },
     {
       "name" : "Коза",
@@ -89,7 +100,8 @@
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 10.0,
-      "currentHunger" : 10
+      "currentHunger" : 10,
+      "maxCapacity" : 140
     },
     {
       "name" : "Лошадь",
@@ -97,7 +109,8 @@
       "maxEnergy" : 4,
       "currentEnergy" : 0,
       "maxHunger" : 60.0,
-      "currentHunger" : 60
+      "currentHunger" : 60,
+      "maxCapacity" : 20
     },
     {
       "name" : "Мышь",
@@ -105,7 +118,8 @@
       "maxEnergy" : 1,
       "currentEnergy" : 0,
       "maxHunger" : 0.01,
-      "currentHunger" : 0.01
+      "currentHunger" : 0.01,
+      "maxCapacity" : 500
     },
     {
       "name" : "Кролик",
@@ -113,7 +127,8 @@
       "maxEnergy" : 2,
       "currentEnergy" : 0,
       "maxHunger" : 0.45,
-      "currentHunger" : 0.45
+      "currentHunger" : 0.45,
+      "maxCapacity" : 150
     },
     {
       "name" : "Овца",
@@ -121,7 +136,8 @@
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 15.0,
-      "currentHunger" : 15
+      "currentHunger" : 15,
+      "maxCapacity" : 140
     }
   ]
 }

@@ -1,17 +1,12 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals;
 
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.LuckNumber;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.CarnivoreAnimals.CarnivoreAnimal;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordinates;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Luck;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.Randomizer;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -32,11 +27,11 @@ public abstract class HerbivoreAnimal extends Animal {
                     .toList();
             if (!accessibleAnimals.isEmpty()) {
                 Animal victim = chooseVictim(accessibleAnimals);
-                this.tryToEat(victim);
+                tryToEat(victim);
             } else  if (!cell.getFlora().isEmpty()){
-                Plant plant = cell.getFlora().stream().findAny().get();
+                Plant plant = cell.getFlora().stream().findAny().orElse(cell.getFlora().get(0));
                 plant.die();
-                currentHanger +=10;
+                currentHanger += Island.getInstance().getSettings().getPlantsNutritionalValue();
                 if (currentHanger > maxHunger) {
                     currentHanger = maxHunger;
                 }

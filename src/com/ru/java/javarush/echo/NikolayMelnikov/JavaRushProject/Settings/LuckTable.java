@@ -26,9 +26,6 @@ public class LuckTable {
     public static Map<String, Map<String, Double>> getLuck() {
         return luck;
     }
-
-    public LuckTable() throws IOException {
-    }
 }
 
 

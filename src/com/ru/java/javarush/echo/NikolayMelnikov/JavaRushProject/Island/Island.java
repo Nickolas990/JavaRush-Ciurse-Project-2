@@ -1,7 +1,5 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island;
 
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;
-
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Settings.Settings;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,18 +22,13 @@ public class Island {
         return settings;
     }
 
-    private int xSize = settings.XSize;
-    private int ySize = settings.YSize;
+    private int xSize = settings.wight;
+    private int ySize = settings.height;
     Cell[][] island = new Cell[xSize][ySize];
 
 
     private Island() {
         initialiseIsland();
-    }
-
-    public void addAnimal(Animal animal) {
-        Cell cell = getCell(animal.getPosition());
-        cell.addAnimalInCell(animal);
     }
 
     public Cell getCell(int x, int y) {

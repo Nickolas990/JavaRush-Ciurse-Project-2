@@ -14,4 +14,5 @@ public class AnimalCharacteristics {
     private int currentEnergy;
     private double maxHunger;
     private double currentHunger;
+    private int maxCapacity;
 }
