@@ -2,7 +2,7 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Execu
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.CarnivoreAnimals.*;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals.*;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.AnimalDeployer;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.rannables.AnimalDeployer;
 
 
 
@@ -37,7 +37,6 @@ public class FaunaImmigrator {
 
         listOfTasks.stream().forEach(e ->service.submit(e));
 
-        service.shutdown();
         try {
             service.awaitTermination(10, TimeUnit.SECONDS);
                 System.out.println("Животные размещены");

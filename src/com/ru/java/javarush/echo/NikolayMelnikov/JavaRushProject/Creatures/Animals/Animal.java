@@ -29,7 +29,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     protected int starve = Island.getInstance().getSettings().getStarve();
     protected List<Cell> accessibleCells = new ArrayList<>();
     public List<String> logList = new ArrayList<>();
-    AnimalCharacteristics[] animalCharacteristics = Settings.initialize().getAnimalCharacteristics();
+    protected AnimalCharacteristics[] animalCharacteristics = Settings.initialize().getAnimalCharacteristics();
 
 
     public Animal(Coordinates position) {

@@ -1,16 +1,13 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Main;
 
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Runner;
+
 public class Main {
-    private static Starter starter = new Starter();
 
     public static void main(String[] args) {
 
-//        new Runner().startSimulation();
+        new Runner().startSimulation();
 
-        String dir = System.getProperty("user.dir");
-        System.out.println(dir);
 
-        //       Thread newThread = new Thread(new Starter());
-//       newThread.start();
     }
 }

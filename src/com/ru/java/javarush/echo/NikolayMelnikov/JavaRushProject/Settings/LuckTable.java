@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
+import java.net.URI;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -17,7 +19,7 @@ public class LuckTable {
 
     static {
         try {
-            luck = new Gson().fromJson(Files.newBufferedReader(Path.of("src/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Settings/luck.json")), HashMap.class);
+            luck = new Gson().fromJson(Files.newBufferedReader(Path.of( "luck.json")), HashMap.class);
         } catch (IOException e) {
             throw new RuntimeException("Не найден файл настройки удачи. Проверьте правильное местоположение файла luck.json");
         }

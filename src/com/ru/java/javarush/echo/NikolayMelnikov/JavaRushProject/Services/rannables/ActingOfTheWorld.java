@@ -1,8 +1,9 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.rannables;
 
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.rannables.DayInCellProcessor;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.StatisticsPrinter;
 
 import java.util.concurrent.ExecutorService;
@@ -14,10 +15,10 @@ import java.util.concurrent.TimeUnit;
  * Ввиду очень медленного метода eat() принято решение распараллелить процесс выполнения дня
  */
 public class ActingOfTheWorld implements Runnable {
-    Island island = Island.getInstance();
-    StatisticsPrinter printer = new StatisticsPrinter();
+    public Island island = Island.getInstance();
+    public StatisticsPrinter printer = new StatisticsPrinter();
 
-    ExecutorService service = Executors.newWorkStealingPool(5);
+    public ExecutorService service = Executors.newWorkStealingPool(5);
 
     public void run() {
         System.out.println("Животные начинают движение...");

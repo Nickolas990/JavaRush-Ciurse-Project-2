@@ -1,4 +1,4 @@
-package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services;
+package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.rannables;
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Annotations.MaxCapacity;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.Animal;

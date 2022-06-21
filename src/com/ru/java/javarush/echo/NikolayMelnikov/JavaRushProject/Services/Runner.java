@@ -1,7 +1,8 @@
 package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services;
 
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Executors.FaunaImmigrator;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.Executors.NewDayStarter;
+import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.rannables.GrassSeeder;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.GrassThreadFactory;
 
 import java.util.Scanner;
@@ -10,7 +11,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Runner {
-    Island island = Island.getInstance();
     int day = 0;
     ScheduledExecutorService grass = Executors.newScheduledThreadPool(3, new GrassThreadFactory());
 

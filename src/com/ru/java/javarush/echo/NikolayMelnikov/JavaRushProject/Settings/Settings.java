@@ -27,9 +27,9 @@ public class Settings {
      ObjectMapper objectMapper = new ObjectMapper();
      Settings settings;
      try {
-         settings = objectMapper.readValue(Files.newBufferedReader(Path.of("src/com/ru/java/javarush/echo/NikolayMelnikov/JavaRushProject/Settings/settings.json")), Settings.class);
+         settings = objectMapper.readValue(Files.newBufferedReader(Path.of("settings.json")), Settings.class);
      } catch (IOException e) {
-         throw new RuntimeException("Возникла проблема с файлом settings.json. Проверьте, что он находится в каталоге settings и соответствует классу Settings()");
+         throw new RuntimeException("Возникла проблема с файлом settings.json. Проверьте, что он находится в корневом каталоге settings и соответствует классу Settings()");
      }
      return settings;
  }
