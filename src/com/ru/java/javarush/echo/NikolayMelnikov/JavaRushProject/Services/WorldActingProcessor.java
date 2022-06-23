@@ -4,6 +4,8 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.rannab
 
 public class WorldActingProcessor {
     public void process() {
-        new Thread(new ActingOfTheWorld()).start();
+        Thread thread = new Thread(new ActingOfTheWorld());
+        thread.setName("World Act");
+        thread.start();
     }
 }

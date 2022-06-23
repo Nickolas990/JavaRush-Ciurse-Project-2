@@ -9,9 +9,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class NewDayStarter {
-    static ExecutorService service = Executors.newWorkStealingPool();
+    static ExecutorService service;
+
 
     public static void startNewDay() {
+        service = Executors.newFixedThreadPool(10);
+        Thread.currentThread().setName("NewDayStarter");
         System.out.println("Начинаем новый день...");
         service.submit(() -> Arrays.stream(Island.getInstance().getIsland())
                 .forEach(cell -> Arrays
@@ -24,6 +27,13 @@ public class NewDayStarter {
             }
         } catch (InterruptedException e) {
             throw new RuntimeException("Превышено ожидание потоков восстановления энергии");
+        }
+
+        try {
+            service.awaitTermination(5, TimeUnit.SECONDS);
+            service.shutdown();
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Выполнение дня прервано");
         }
         System.out.println("Животные готовы к новому дню");
 

@@ -4,8 +4,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Anima
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals.*;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.rannables.AnimalDeployer;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -33,15 +31,21 @@ public class FaunaImmigrator {
         listOfTasks.add(new AnimalDeployer(Rabbit.class));
         listOfTasks.add(new AnimalDeployer(Sheep.class));
 
-        ExecutorService service = Executors.newCachedThreadPool();
+        ExecutorService service = Executors.newWorkStealingPool();
+
 
         listOfTasks.stream().forEach(e ->service.submit(e));
 
         try {
-            service.awaitTermination(10, TimeUnit.SECONDS);
+            System.out.println("Ждем размещения животных");
+            service.shutdown();
+            if (!service.awaitTermination(15, TimeUnit.SECONDS)) {
+              service.shutdownNow();
+            }
                 System.out.println("Животные размещены");
         } catch (InterruptedException e) {
             throw new RuntimeException(e.getMessage());
         }
+
     }
 }

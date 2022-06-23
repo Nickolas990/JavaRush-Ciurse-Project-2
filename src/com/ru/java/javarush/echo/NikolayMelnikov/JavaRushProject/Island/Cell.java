@@ -6,13 +6,12 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Anima
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Animals.HerbivoreAnimals.HerbivoreAnimal;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Creature;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Creatures.Grass.Plant;
-
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
@@ -75,7 +74,7 @@ public class Cell {
 
     public void removeThis(Creature creature) {
         creaturesInCell.merge(creature.getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
-        if (creaturesInCell.get(creature.getName()) < 0 || creaturesInCell.get(creature.getName()) != null ) {
+        if (creaturesInCell.get(creature.getName()) < 0 || creaturesInCell.containsKey(creature.getName())) {
             creaturesInCell.remove(creature.getName());
         }
     }

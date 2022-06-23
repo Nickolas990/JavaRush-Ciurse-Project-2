@@ -14,6 +14,7 @@ public class DayInCellProcessor implements Runnable {
     public void run() {
         cell.getFauna().stream().forEach(animal -> {
             animal.getLogList().clear();
+            Thread.currentThread().setName("Animal" + " " + animal.getPosition());
             do {
                 if (animal.getCurrentHanger() < animal.getMaxHunger()/2) {
                     animal.eat();

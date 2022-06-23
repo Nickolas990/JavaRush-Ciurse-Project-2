@@ -44,9 +44,6 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     public void moveTo(Cell newCell) {
         reduceEnergy();
         logList.add("Начинает движение в клетку " + newCell.getCoordinates());
-        if (getCurrentEnergy().get() < 0) {
-            throw new RuntimeException("Нет доступных очков хода");
-        }
         leaveCell();
         newCell.addAnimalInCell(this);
         setPosition(newCell.getCoordinates());

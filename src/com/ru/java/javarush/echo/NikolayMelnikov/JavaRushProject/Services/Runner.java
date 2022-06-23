@@ -12,19 +12,29 @@ import java.util.concurrent.TimeUnit;
 
 public class Runner {
     int day = 0;
-    ScheduledExecutorService grass = Executors.newScheduledThreadPool(3, new GrassThreadFactory());
+    Scanner scanner = new Scanner(System.in);
+    private ScheduledExecutorService grass = Executors.newScheduledThreadPool(1, new GrassThreadFactory());
 
     public void startSimulation() {
         new FaunaImmigrator().immigration();
-        grass.scheduleAtFixedRate(new GrassSeeder(), 0, 1, TimeUnit.MINUTES);
+       grass.scheduleAtFixedRate(new GrassSeeder(), 0, 1, TimeUnit.MINUTES);
         while (true) {
             new WorldActingProcessor().process();
-            if (new Scanner(System.in).nextLine().equals("exit")) {
+            String answer = scanner.nextLine();
+            if ("exit".equalsIgnoreCase(answer)) {
+                System.out.println("Введено exit");
                 break;
             } else {
                 NewDayStarter.startNewDay();
             }
         }
-        grass.shutdown();
+        try {
+            grass.shutdown();
+            grass.awaitTermination(1, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Цикл прерван");
+
     }
 }

@@ -3,7 +3,6 @@ package com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.ranna
 
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Cell;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Island;
-import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Services.rannables.DayInCellProcessor;
 import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Util.StatisticsPrinter;
 
 import java.util.concurrent.ExecutorService;
@@ -16,9 +15,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class ActingOfTheWorld implements Runnable {
     public Island island = Island.getInstance();
-    public StatisticsPrinter printer = new StatisticsPrinter();
+     public StatisticsPrinter printer = new StatisticsPrinter();
 
-    public ExecutorService service = Executors.newWorkStealingPool(5);
+    public ExecutorService service = Executors.newFixedThreadPool(5);
 
     public void run() {
         System.out.println("Животные начинают движение...");
@@ -32,7 +31,9 @@ public class ActingOfTheWorld implements Runnable {
         }
         service.shutdown();
         try {
-            service.awaitTermination(3, TimeUnit.SECONDS);
+            if (!service.awaitTermination(10, TimeUnit.SECONDS)) {
+                service.shutdownNow();
+            }
         } catch (InterruptedException e) {
             throw new RuntimeException("Прерван процесс выполнения дня");
         }
