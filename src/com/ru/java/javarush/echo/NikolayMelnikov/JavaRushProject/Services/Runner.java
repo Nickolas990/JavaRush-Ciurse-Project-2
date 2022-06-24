@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Runner {
     int day = 0;
+    private final String ASKING = "Введите exit для завершения программы или ENTER для запуска нового дня";
+    private final String NEW_DAY = "Текущий день:";
     Scanner scanner = new Scanner(System.in);
     private ScheduledExecutorService grass = Executors.newScheduledThreadPool(1, new GrassThreadFactory());
 
@@ -19,7 +21,9 @@ public class Runner {
         new FaunaImmigrator().immigration();
        grass.scheduleAtFixedRate(new GrassSeeder(), 0, 1, TimeUnit.MINUTES);
         while (true) {
+            System.out.println(NEW_DAY + " " + ++day);
             new WorldActingProcessor().process();
+            System.out.println(ASKING);
             String answer = scanner.nextLine();
             if ("exit".equalsIgnoreCase(answer)) {
                 System.out.println("Введено exit");

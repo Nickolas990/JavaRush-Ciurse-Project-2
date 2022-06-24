@@ -27,6 +27,7 @@ public abstract class Creature implements Mortal {
     protected int maxCapacity;
     protected Map<String, Double> luck;
     protected Cell cell;
+    protected String emoji;
 
 
     protected static int maxCapacityInCell;
@@ -41,6 +42,7 @@ public abstract class Creature implements Mortal {
     public Creature(Coordinates position) {
         this.position = position;
         cell = Island.getInstance().getCell(position);
+        setName(this.getClass().getSimpleName());
 
     }
 

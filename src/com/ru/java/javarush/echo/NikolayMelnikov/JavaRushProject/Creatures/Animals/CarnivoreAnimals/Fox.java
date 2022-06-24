@@ -5,9 +5,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordina
 
 @MaxCapacity(30)
 public class Fox extends CarnivoreAnimal {
-    {
-        setName("Лиса");
-    }
     public Fox(int x, int y) {
         super(x, y);
         init();

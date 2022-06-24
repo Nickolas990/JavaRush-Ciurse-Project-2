@@ -22,9 +22,10 @@ public class Plant extends Creature implements Mortal {
     }
 
     {
-        name = "Растение";
-        weight = 1;
-        maxCapacityInCell = 200;
+        name = "Plant";
+        weight = Island.getInstance().getSettings().getPlantsWeight();
+        maxCapacityInCell = Island.getInstance().getSettings().getPlantsCapacityPerCell();
+        emoji = "\uD83C\uDF31";
     }
 
     @Override

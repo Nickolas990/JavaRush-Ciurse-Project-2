@@ -5,9 +5,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordina
 
 @MaxCapacity(10)
 public class Buffalo extends HerbivoreAnimal {
-    {
-        setName("Буйвол");
-    }
 
 
     public Buffalo(int x, int y) {

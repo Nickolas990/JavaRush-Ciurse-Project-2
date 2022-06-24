@@ -15,4 +15,5 @@ public class AnimalCharacteristics {
     private double maxHunger;
     private double currentHunger;
     private int maxCapacity;
+    private String emoji;
 }

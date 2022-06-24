@@ -17,6 +17,8 @@ public class Settings {
  public int height;
 
  private int starve;
+ private int plantsWeight;
+ private int plantsCapacityPerCell;
  private int plantsNutritionalValue;
 
  private AnimalCharacteristics[] animalCharacteristics;

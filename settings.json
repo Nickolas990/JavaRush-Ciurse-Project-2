@@ -3,141 +3,158 @@
   "height" : 20,
   "plantsNutritionalValue" : 10,
   "starve" : 3,
+  "plantsWeight" : 1,
+  "plantsCapacityPerCell" : 200,
   "animalCharacteristics" : [
     {
-      "name" : "Медведь",
+      "name" : "Bear",
       "weight" : 500.0,
       "maxEnergy" : 2,
       "currentEnergy" : 0,
       "maxHunger" : 80.0,
       "currentHunger" : 80,
-      "maxCapacity" : 5
+      "maxCapacity" : 5,
+      "emoji" : "\uD83D\uDC3B"
     },
     {
-      "name" : "Удав",
+      "name" : "Boa",
       "weight" : 15.0,
       "maxEnergy" : 1,
       "currentEnergy" : 0,
       "maxHunger" : 3.0,
       "currentHunger" : 3,
-      "maxCapacity" : 30
+      "maxCapacity" : 30,
+      "emoji" : "\uD83D\uDC0D"
     },
     {
-      "name" : "Орел",
+      "name" : "Eagle",
       "weight" : 6.0,
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 1.0,
       "currentHunger" : 1,
-      "maxCapacity" : 20
+      "maxCapacity" : 20,
+      "emoji" : "\uD83E\uDD85"
     },
     {
-      "name" : "Лиса",
+      "name" : "Fox",
       "weight" : 8.0,
       "maxEnergy" : 2,
       "currentEnergy" : 0,
       "maxHunger" : 2.0,
       "currentHunger" : 2,
-      "maxCapacity" : 30
+      "maxCapacity" : 30,
+      "emoji" : "\uD83E\uDD8A"
     },
     {
-      "name" : "Волк",
+      "name" : "Wolf",
       "weight" : 50.0,
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 8.0,
       "currentHunger" : 8,
-      "maxCapacity" : 30
+      "maxCapacity" : 30,
+      "emoji" : "\uD83D\uDC3A"
     },
     {
-      "name" : "Кабан",
+      "name" : "Boar",
       "weight" : 400.0,
       "maxEnergy" : 2,
       "currentEnergy" : 0,
       "maxHunger" : 50.0,
       "currentHunger" : 50,
-      "maxCapacity" : 50
+      "maxCapacity" : 50,
+      "emoji" : "\uD83D\uDC17"
     },
     {
-      "name" : "Буйвол",
+      "name" : "Buffalo",
       "weight" : 700.0,
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 100.0,
       "currentHunger" : 100,
-      "maxCapacity" : 10
+      "maxCapacity" : 10,
+      "emoji" : "\uD83D\uDC03"
     },
     {
-      "name" : "Гусеница",
+      "name" : "Caterpillar",
       "weight" : 0.01,
       "maxEnergy" : 0,
       "currentEnergy" : 0,
       "maxHunger" : 0.0,
       "currentHunger" : 0,
-      "maxCapacity" : 1000
+      "maxCapacity" : 1000,
+      "emoji" : "\uD83D\uDC1B"
     },
     {
-      "name" : "Олень",
+      "name" : "Deer",
       "weight" : 300.0,
       "maxEnergy" : 4,
       "currentEnergy" : 0,
       "maxHunger" : 50.0,
       "currentHunger" : 50,
-      "maxCapacity" : 20
+      "maxCapacity" : 20,
+      "emoji" : "\uD83E\uDD8C"
     },
     {
-      "name" : "Утка",
+      "name" : "Duck",
       "weight" : 1.0,
       "maxEnergy" : 4,
       "currentEnergy" : 0,
       "maxHunger" : 0.15,
       "currentHunger" : 0.15,
-      "maxCapacity" : 200
+      "maxCapacity" : 200,
+      "emoji" : "\uD83E\uDD86"
     },
     {
-      "name" : "Коза",
+      "name" : "Goat",
       "weight" : 60.0,
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 10.0,
       "currentHunger" : 10,
-      "maxCapacity" : 140
+      "maxCapacity" : 140,
+      "emoji" : "\uD83D\uDC10"
     },
     {
-      "name" : "Лошадь",
+      "name" : "Horse",
       "weight" : 400.0,
       "maxEnergy" : 4,
       "currentEnergy" : 0,
       "maxHunger" : 60.0,
       "currentHunger" : 60,
-      "maxCapacity" : 20
+      "maxCapacity" : 20,
+      "emoji" : "\uD83D\uDC0E"
     },
     {
-      "name" : "Мышь",
+      "name" : "Mouse",
       "weight" : 0.05,
       "maxEnergy" : 1,
       "currentEnergy" : 0,
       "maxHunger" : 0.01,
       "currentHunger" : 0.01,
-      "maxCapacity" : 500
+      "maxCapacity" : 500,
+      "emoji" : "\uD83D\uDC01"
     },
     {
-      "name" : "Кролик",
+      "name" : "Rabbit",
       "weight" : 2.0,
       "maxEnergy" : 2,
       "currentEnergy" : 0,
       "maxHunger" : 0.45,
       "currentHunger" : 0.45,
-      "maxCapacity" : 150
+      "maxCapacity" : 150,
+      "emoji" : "\uD83D\uDC07"
     },
     {
-      "name" : "Овца",
+      "name" : "Sheep",
       "weight" : 70.0,
       "maxEnergy" : 3,
       "currentEnergy" : 0,
       "maxHunger" : 15.0,
       "currentHunger" : 15,
-      "maxCapacity" : 140
+      "maxCapacity" : 140,
+      "emoji" : "\uD83D\uDC11"
     }
   ]
 }

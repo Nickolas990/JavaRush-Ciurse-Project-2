@@ -18,6 +18,8 @@ public class StatisticsPrinter implements Printer {
     public AtomicInteger carnivoresQuantity = new AtomicInteger(0);
     public AtomicInteger herbivoresQuantity = new AtomicInteger(0);
     private ExecutorService service = Executors.newSingleThreadExecutor();
+    private static final String CARNIVORES_DEAD = "Все хищники погибли. Рекомендуем прекратить мучить этот бренный мир.";
+    private static final String HERBIVORES_DEAD = "Все травоядные погибли. Рекомендуем прекратить мучить этот бренный мир.";
 
     @Override
     public void print() {
@@ -48,9 +50,9 @@ public class StatisticsPrinter implements Printer {
         System.out.println();
         quantityOfPlants.forEach((k,v)->System.out.println(k +" : "+v ));
         if (carnivoresQuantity.get() == 0) {
-            System.out.println("Все хищники погибли");
+            System.out.println(CARNIVORES_DEAD);
         } else if (herbivoresQuantity.get() == 0) {
-            System.out.println("Все травоядные погибли");
+            System.out.println(HERBIVORES_DEAD);
         }
     }
 }

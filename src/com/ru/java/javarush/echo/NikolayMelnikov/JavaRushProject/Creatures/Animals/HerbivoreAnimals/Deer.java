@@ -6,10 +6,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordina
 @MaxCapacity(20)
 public class Deer extends HerbivoreAnimal {
 
-    {
-        setName("Олень");
-    }
-
     public Deer(int x, int y) {
         super(x, y);
         init();

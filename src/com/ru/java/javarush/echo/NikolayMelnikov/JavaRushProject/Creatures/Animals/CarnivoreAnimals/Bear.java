@@ -10,11 +10,6 @@ import lombok.Setter;
 @MaxCapacity(5)
 public class Bear extends CarnivoreAnimal {
 
-
-    {
-        setName("Медведь");
-    }
-
     public Bear(int x, int y) {
         super(x, y);
         init();

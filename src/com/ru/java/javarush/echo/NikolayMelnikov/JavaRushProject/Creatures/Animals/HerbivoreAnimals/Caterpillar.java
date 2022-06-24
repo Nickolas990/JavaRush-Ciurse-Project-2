@@ -6,10 +6,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordina
 @MaxCapacity(1000)
 public class Caterpillar extends HerbivoreAnimal {
 
-    {
-        setName("Гусенница");
-    }
-
 
     public Caterpillar(int x, int y) {
         super(x, y);

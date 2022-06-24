@@ -7,10 +7,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordina
 @MaxCapacity(20)
 public class Eagle extends CarnivoreAnimal {
 
-    {
-        setName("Орел");
-    }
-
     public Eagle(int x, int y) {
         super(x, y);
         init();

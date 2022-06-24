@@ -6,9 +6,6 @@ import com.ru.java.javarush.echo.NikolayMelnikov.JavaRushProject.Island.Coordina
 
 @MaxCapacity(500)
 public class Mouse extends HerbivoreAnimal {
-    {
-        setName("Мышь");
-    }
 
 
     public Mouse(int x, int y) {
