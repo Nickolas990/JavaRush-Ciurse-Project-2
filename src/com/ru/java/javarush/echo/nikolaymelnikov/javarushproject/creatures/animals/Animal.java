@@ -59,16 +59,9 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     public void breed() {
         List<Animal> breeders = chooseForBreed();
         if (!breeders.isEmpty()) {
-            Animal animal = breeders.get(Randomizer.randomize(0, breeders.size()));
-            try {
-                Animal newAnimal = this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition());
-                newAnimal.getThisPosition(animal.getPosition());
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
-                     InstantiationException e) {
-                System.out.println(e.getMessage());
-                throw new RuntimeException(e);
-            }
-            animal.reduceEnergy();
+            Animal parentAnimal = breeders.get(Randomizer.randomize(0, breeders.size()));
+            bornNewAnimal(parentAnimal);
+            parentAnimal.reduceEnergy();
             this.reduceEnergy();
         } else {
             initializeAccessibleCells();
@@ -160,5 +153,17 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     public void getThisPosition(Coordinates coordinates) {
         setCell(island.getCell(coordinates));
         cell.addAnimalInCell(this);
+    }
+
+    private void bornNewAnimal(Animal animal) {
+
+        try {
+            Animal newAnimal = this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition());
+            newAnimal.getThisPosition(animal.getPosition());
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
+                 InstantiationException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 }
