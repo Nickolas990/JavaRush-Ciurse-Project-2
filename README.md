@@ -1,2 +1,2 @@
-# JavaRush-Ciurse-Project-2
+# JavaRush-Course-Project-2
 Second Course project
