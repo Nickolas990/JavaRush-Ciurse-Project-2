@@ -129,7 +129,7 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     public void leaveCell() {
         Cell cell = island.getCell(getPosition());
         cell.getFauna().remove(this);
-        cell.getCurrentCapacityOfCell().merge(getEmoji(), 1, Integer::sum);
+        cell.getCurrentCapacityOfCell().merge(getName(), 1, Integer::sum);
 
         if (cell.getCurrentCapacityOfCell().get(getName()) >= getClass().getAnnotation(MaxCapacity.class).value()) {
             cell.getCurrentCapacityOfCell().remove(getName());
@@ -161,11 +161,11 @@ public abstract class Animal extends Creature implements Moving, Eating, Breedin
     private void bornNewAnimal(Animal animal) {
 
         try {
-            Animal newAnimal = this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition());
+            Animal newAnimal = this.getClass().getConstructor(Coordinates.class, Island.class).newInstance(getPosition(), island);
             newAnimal.getThisPosition(animal.getPosition());
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
                  InstantiationException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e);
             throw new RuntimeException(e + " Problem with newBornAnimal");
         }
     }

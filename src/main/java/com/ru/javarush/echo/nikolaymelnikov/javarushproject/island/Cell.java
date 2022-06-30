@@ -37,28 +37,28 @@ public class Cell {
 
     public void addAnimalInCell(Animal animal) {
         fauna.add(animal);
-        creaturesInCell.merge(animal.getEmoji(), 1L, Long::sum);
+        creaturesInCell.merge(animal.getName(), 1L, Long::sum);
         updateCapacity(animal);
-        if (currentCapacityOfCell.get(animal.getEmoji()) <=0 ){
+        if (currentCapacityOfCell.get(animal.getName()) <=0 ){
             animal.die();
         }
     }
     private void updateCapacity(Creature creature) {
-        currentCapacityOfCell.putIfAbsent(creature.getEmoji(), creature.getClass().getAnnotation(MaxCapacity.class).value());
-        currentCapacityOfCell.merge(creature.getEmoji(), 1, (oldVal, newVal) -> oldVal - newVal);
+        currentCapacityOfCell.putIfAbsent(creature.getName(), creature.getClass().getAnnotation(MaxCapacity.class).value());
+        currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal - newVal);
     }
 
     public void addPlantInCell(Plant plant) {
         flora.add(plant);
-        quantityOfGrass.merge(plant.getEmoji(), 1L, Long::sum);
+        quantityOfGrass.merge(plant.getName(), 1L, Long::sum);
     }
 
 
 
     public void removeThis(Creature creature) {
-        creaturesInCell.merge(creature.getEmoji(), 1L, (oldVal, newVal) -> oldVal - newVal);
-        if (creaturesInCell.get(creature.getEmoji()) < 0 || creaturesInCell.containsKey(creature.getEmoji())) {
-            creaturesInCell.remove(creature.getEmoji());
+        creaturesInCell.merge(creature.getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
+        if (creaturesInCell.get(creature.getName()) < 0 || creaturesInCell.containsKey(creature.getName())) {
+            creaturesInCell.remove(creature.getName());
         }
     }
     public Integer getHerbivoreAnimalsQuantity() {

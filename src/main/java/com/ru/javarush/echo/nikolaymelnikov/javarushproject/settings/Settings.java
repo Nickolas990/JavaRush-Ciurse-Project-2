@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -31,19 +30,19 @@ public class Settings {
         ObjectMapper objectMapper = new ObjectMapper();
         Settings settings;
         try {
-            settings = objectMapper.readValue(getFileFromResource("settings.json"), Settings.class);
+            settings = objectMapper.readValue(new BufferedReader(new InputStreamReader(getFileFromResource("settings.json"))), Settings.class);
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e + " There was a problem with the settings.json file. Check that it is in the settings root directory and matches the Settings() class");
         }
         return settings;
     }
 
-    private static File getFileFromResource(String filename) throws URISyntaxException {
-        URL resource = Settings.class.getClassLoader().getResource(filename);
+    private static InputStream getFileFromResource(String filename) throws URISyntaxException {
+        InputStream resource = Settings.class.getClassLoader().getResourceAsStream(filename);
         if (resource == null) {
             throw new IllegalArgumentException("File settings.json not found");
         } else {
-            return new File(resource.toURI());
+            return resource;
         }
     }
 }

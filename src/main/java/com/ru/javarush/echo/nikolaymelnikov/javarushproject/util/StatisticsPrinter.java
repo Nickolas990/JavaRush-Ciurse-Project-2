@@ -37,8 +37,8 @@ public class StatisticsPrinter implements Printer {
             for (int y = 0; y < island.getHeight(); y++) {
                 Cell cell = island.getCell(x, y);
                 service.submit(() -> {
-                    cell.getCreaturesInCell().entrySet().stream().forEach(e -> quantityOfAnimals.merge(e.getKey(), e.getValue(), (o, n) -> o + n));
-                    cell.getQuantityOfGrass().entrySet().stream().forEach(e -> quantityOfPlants.merge(e.getKey(), e.getValue(), (o, n) -> o + n));
+                    cell.getFauna().stream().forEach(e -> quantityOfAnimals.merge(e.getEmoji(), 1L, Long::sum));
+                    cell.getFlora().stream().forEach(e -> quantityOfPlants.merge(e.getEmoji(), 1L, Long::sum));
                     carnivoresQuantity.addAndGet(cell.getCarnivoreAnimalsQuantity());
                     herbivoresQuantity.addAndGet(cell.getHerbivoreAnimalsQuantity());
             });
