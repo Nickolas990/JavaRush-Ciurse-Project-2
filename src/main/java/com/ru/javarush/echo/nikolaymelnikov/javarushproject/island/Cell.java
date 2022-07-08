@@ -35,6 +35,10 @@ public class Cell {
         coordinates.setY(y);
     }
 
+    public Cell(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
     public void addAnimalInCell(Animal animal) {
         fauna.add(animal);
         creaturesInCell.merge(animal.getName(), 1L, Long::sum);
